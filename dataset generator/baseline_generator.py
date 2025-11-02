@@ -1,6 +1,5 @@
 # %%
 import wntr
-import yaml
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -8,16 +7,16 @@ import matplotlib.pyplot as plt
 # -----------------------------
 # 1. Load configuration from YAML
 # -----------------------------
-yaml_file = 'dataset_configuration.yaml'  # your YAML file
-with open(yaml_file, 'r') as f:
-    config = yaml.safe_load(f)
-
-sensor_nodes = config.get('pressure_sensors', [])
+sensor_nodes = ['n1', 'n4', 'n31', 'n54', 'n105', 'n114', 'n163', 'n188',
+                      'n215', 'n229', 'n288', 'n296', 'n332', 'n342', 'n410',
+                      'n415', 'n429', 'n458', 'n469', 'n495', 'n506', 'n516',
+                      'n519', 'n549', 'n613', 'n636', 'n644', 'n679', 'n722',
+                      'n726', 'n740', 'n752', 'n769']
 inp_file = "L-TOWN_Real.inp"
-output_csv = config.get('output_csv', 'Baseline.csv')
-duration_days = config.get('duration_days', 365)
-report_step_min = config.get('report_step_hr', 15)  # in minutes
-noise_std = config.get('noise_std', 0.0)
+output_csv = 'Baseline.csv'
+duration_days = 365
+report_step_min = 15  # in minutes
+noise_std = 0.0
 
 print(f"Loaded {len(sensor_nodes)} pressure sensors from YAML.")
 
@@ -106,3 +105,26 @@ plt.legend()
 plt.grid(True)
 plt.show()
 # %%
+#####################################################
+# Flow analysis for constructing the directed graph
+#####################################################
+
+flow = results.link["flowrate"]
+time_step = 3600
+flow_at_t = flow.loc[time_step]
+
+# determine flow directions
+flow_directions = {}
+for pipe_name, q in flow_at_t.items():
+    start_node = wn.get_link(pipe_name).start_node_name
+    end_node = wn.get_link(pipe_name).end_node_name
+
+    if q >= 0:
+        flow_directions[pipe_name] = (start_node, end_node)
+    elif q < 0:
+        flow_directions[pipe_name] = (end_node, start_node)
+
+# %%
+# save flow directions to csv
+flow_dir_df = pd.DataFrame.from_dict(flow_directions, orient='index', columns=['From_Node', 'To_Node'])
+flow_dir_df.to_csv('flow_directions.csv')

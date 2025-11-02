@@ -1,0 +1,3142 @@
+{
+    "n61": {
+        "closest_sensor": "n429",
+        "distance": 188.0818
+    },
+    "n62": {
+        "closest_sensor": "n429",
+        "distance": 214.95639999999997
+    },
+    "n66": {
+        "closest_sensor": "n415",
+        "distance": 426.81210000000004
+    },
+    "n64": {
+        "closest_sensor": "n415",
+        "distance": 440.8724
+    },
+    "n90": {
+        "closest_sensor": "n636",
+        "distance": 731.5309000000001
+    },
+    "n86": {
+        "closest_sensor": "n636",
+        "distance": 783.7863000000001
+    },
+    "n70": {
+        "closest_sensor": "n495",
+        "distance": 536.6379000000001
+    },
+    "n71": {
+        "closest_sensor": "n495",
+        "distance": 566.0933000000001
+    },
+    "n2": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n3": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n12": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n14": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n6": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n9": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n30": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n22": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n67": {
+        "closest_sensor": "n415",
+        "distance": 372.0889
+    },
+    "n46": {
+        "closest_sensor": "n636",
+        "distance": 1426.1601000000003
+    },
+    "n48": {
+        "closest_sensor": "n636",
+        "distance": 1402.5060000000003
+    },
+    "n10": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n7": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n4": {
+        "closest_sensor": "n4",
+        "distance": 0
+    },
+    "n27": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n31": {
+        "closest_sensor": "n31",
+        "distance": 0
+    },
+    "n16": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n15": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n18": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n20": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n24": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n21": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n25": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n28": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n26": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n34": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n33": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n32": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n29": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n36": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n35": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n37": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n38": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n41": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n45": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n39": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n42": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n40": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n43": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n55": {
+        "closest_sensor": "n410",
+        "distance": 57.6229
+    },
+    "n50": {
+        "closest_sensor": "n410",
+        "distance": 118.3109
+    },
+    "n51": {
+        "closest_sensor": "n415",
+        "distance": 138.0593
+    },
+    "n53": {
+        "closest_sensor": "n415",
+        "distance": 183.662
+    },
+    "n52": {
+        "closest_sensor": "n415",
+        "distance": 166.2788
+    },
+    "n56": {
+        "closest_sensor": "n415",
+        "distance": 219.63889999999998
+    },
+    "n54": {
+        "closest_sensor": "n54",
+        "distance": 0
+    },
+    "n57": {
+        "closest_sensor": "n54",
+        "distance": 72.8483
+    },
+    "n60": {
+        "closest_sensor": "n636",
+        "distance": 1606.3006
+    },
+    "n65": {
+        "closest_sensor": "n429",
+        "distance": 151.5838
+    },
+    "n63": {
+        "closest_sensor": "n636",
+        "distance": 1209.2931
+    },
+    "n73": {
+        "closest_sensor": "n519",
+        "distance": 369.09630000000004
+    },
+    "n72": {
+        "closest_sensor": "n519",
+        "distance": 390.58790000000005
+    },
+    "n74": {
+        "closest_sensor": "n519",
+        "distance": 344.91650000000004
+    },
+    "n76": {
+        "closest_sensor": "n519",
+        "distance": 275.3899
+    },
+    "n78": {
+        "closest_sensor": "n519",
+        "distance": 203.718
+    },
+    "n79": {
+        "closest_sensor": "n458",
+        "distance": 297.2358
+    },
+    "n77": {
+        "closest_sensor": "n458",
+        "distance": 322.13259999999997
+    },
+    "n80": {
+        "closest_sensor": "n519",
+        "distance": 157.4288
+    },
+    "n81": {
+        "closest_sensor": "n458",
+        "distance": 243.2288
+    },
+    "n85": {
+        "closest_sensor": "n636",
+        "distance": 807.8516000000001
+    },
+    "n89": {
+        "closest_sensor": "n458",
+        "distance": 43.4407
+    },
+    "n91": {
+        "closest_sensor": "n458",
+        "distance": 93.1601
+    },
+    "n92": {
+        "closest_sensor": "n458",
+        "distance": 116.7852
+    },
+    "n88": {
+        "closest_sensor": "n458",
+        "distance": 139.3176
+    },
+    "n235": {
+        "closest_sensor": "n726",
+        "distance": 833.8651
+    },
+    "n238": {
+        "closest_sensor": "n726",
+        "distance": 861.9768
+    },
+    "n279": {
+        "closest_sensor": "n752",
+        "distance": 685.1129999999999
+    },
+    "n278": {
+        "closest_sensor": "n726",
+        "distance": 455.33050000000003
+    },
+    "n269": {
+        "closest_sensor": "n726",
+        "distance": 309.224
+    },
+    "n267": {
+        "closest_sensor": "n726",
+        "distance": 341.18309999999997
+    },
+    "n310": {
+        "closest_sensor": "n752",
+        "distance": 237.7829
+    },
+    "n312": {
+        "closest_sensor": "n752",
+        "distance": 249.94400000000002
+    },
+    "n218": {
+        "closest_sensor": "n636",
+        "distance": 329.9904
+    },
+    "n219": {
+        "closest_sensor": "n644",
+        "distance": 296.8489
+    },
+    "n277": {
+        "closest_sensor": "n726",
+        "distance": 438.3082
+    },
+    "n273": {
+        "closest_sensor": "n726",
+        "distance": 374.49209999999994
+    },
+    "n268": {
+        "closest_sensor": "n726",
+        "distance": 428.9228999999999
+    },
+    "n308": {
+        "closest_sensor": "n752",
+        "distance": 177.9924
+    },
+    "n309": {
+        "closest_sensor": "n752",
+        "distance": 197.4678
+    },
+    "n286": {
+        "closest_sensor": "n722",
+        "distance": 241.49599999999998
+    },
+    "n280": {
+        "closest_sensor": "n722",
+        "distance": 293.28999999999996
+    },
+    "n275": {
+        "closest_sensor": "n722",
+        "distance": 329.4684
+    },
+    "n283": {
+        "closest_sensor": "n722",
+        "distance": 357.1042
+    },
+    "n294": {
+        "closest_sensor": "n740",
+        "distance": 616.9251
+    },
+    "n293": {
+        "closest_sensor": "n726",
+        "distance": 100.31219999999999
+    },
+    "n287": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n291": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n245": {
+        "closest_sensor": "n679",
+        "distance": 168.94330000000002
+    },
+    "n240": {
+        "closest_sensor": "n679",
+        "distance": 209.8367
+    },
+    "n250": {
+        "closest_sensor": "n679",
+        "distance": 105.88210000000001
+    },
+    "n249": {
+        "closest_sensor": "n679",
+        "distance": 111.02010000000001
+    },
+    "n258": {
+        "closest_sensor": "n679",
+        "distance": 368.3636000000001
+    },
+    "n259": {
+        "closest_sensor": "n679",
+        "distance": 378.8181000000001
+    },
+    "n314": {
+        "closest_sensor": "n740",
+        "distance": 56.957
+    },
+    "n316": {
+        "closest_sensor": "n740",
+        "distance": 80.29599999999999
+    },
+    "n302": {
+        "closest_sensor": "n752",
+        "distance": 250.47039999999998
+    },
+    "n297": {
+        "closest_sensor": "n752",
+        "distance": 296.43809999999996
+    },
+    "n328": {
+        "closest_sensor": "n769",
+        "distance": 248.6272
+    },
+    "n327": {
+        "closest_sensor": "n769",
+        "distance": 272.43309999999997
+    },
+    "n242": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n246": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n236": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n233": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n231": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n227": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n301": {
+        "closest_sensor": "n752",
+        "distance": 245.0949
+    },
+    "n254": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n253": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n221": {
+        "closest_sensor": "n644",
+        "distance": 210.4124
+    },
+    "n222": {
+        "closest_sensor": "n644",
+        "distance": 214.7107
+    },
+    "n239": {
+        "closest_sensor": "n726",
+        "distance": 776.477
+    },
+    "n121": {
+        "closest_sensor": "n114",
+        "distance": 203.6251
+    },
+    "n126": {
+        "closest_sensor": "n114",
+        "distance": 260.9173
+    },
+    "n118": {
+        "closest_sensor": "n114",
+        "distance": 204.74850000000004
+    },
+    "n175": {
+        "closest_sensor": "n549",
+        "distance": 166.38459999999998
+    },
+    "n177": {
+        "closest_sensor": "n549",
+        "distance": 180.21769999999998
+    },
+    "n159": {
+        "closest_sensor": "n163",
+        "distance": 185.30780000000001
+    },
+    "n162": {
+        "closest_sensor": "n163",
+        "distance": 207.7073
+    },
+    "n193": {
+        "closest_sensor": "n188",
+        "distance": 362.5956
+    },
+    "n190": {
+        "closest_sensor": "n188",
+        "distance": 379.514
+    },
+    "n150": {
+        "closest_sensor": "n495",
+        "distance": 403.9200000000001
+    },
+    "n153": {
+        "closest_sensor": "n495",
+        "distance": 427.73410000000007
+    },
+    "n156": {
+        "closest_sensor": "n332",
+        "distance": 116.82319999999999
+    },
+    "n157": {
+        "closest_sensor": "n332",
+        "distance": 157.4033
+    },
+    "n168": {
+        "closest_sensor": "n332",
+        "distance": 341.5876
+    },
+    "n171": {
+        "closest_sensor": "n332",
+        "distance": 365.7031
+    },
+    "n133": {
+        "closest_sensor": "n495",
+        "distance": 158.4164
+    },
+    "n141": {
+        "closest_sensor": "n495",
+        "distance": 223.48520000000002
+    },
+    "n122": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n120": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n145": {
+        "closest_sensor": "n495",
+        "distance": 287.43550000000005
+    },
+    "n146": {
+        "closest_sensor": "n495",
+        "distance": 292.94570000000004
+    },
+    "n107": {
+        "closest_sensor": "n105",
+        "distance": 73.35329999999999
+    },
+    "n109": {
+        "closest_sensor": "n105",
+        "distance": 80.56159999999998
+    },
+    "n188": {
+        "closest_sensor": "n188",
+        "distance": 0
+    },
+    "n189": {
+        "closest_sensor": "n188",
+        "distance": 20.0856
+    },
+    "n194": {
+        "closest_sensor": "n188",
+        "distance": 344.1978
+    },
+    "n97": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n94": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n96": {
+        "closest_sensor": "n105",
+        "distance": 122.1946
+    },
+    "n99": {
+        "closest_sensor": "n105",
+        "distance": 178.861
+    },
+    "n102": {
+        "closest_sensor": "n105",
+        "distance": 112.31619999999998
+    },
+    "n103": {
+        "closest_sensor": "n105",
+        "distance": 20.357
+    },
+    "n101": {
+        "closest_sensor": "n105",
+        "distance": 43.8898
+    },
+    "n106": {
+        "closest_sensor": "n105",
+        "distance": 171.92629999999997
+    },
+    "n114": {
+        "closest_sensor": "n114",
+        "distance": 0
+    },
+    "n104": {
+        "closest_sensor": "n114",
+        "distance": 68.8508
+    },
+    "n108": {
+        "closest_sensor": "n114",
+        "distance": 113.8187
+    },
+    "n113": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n105": {
+        "closest_sensor": "n105",
+        "distance": 0
+    },
+    "n115": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n110": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n112": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n116": {
+        "closest_sensor": "n105",
+        "distance": 325.1646999999999
+    },
+    "n119": {
+        "closest_sensor": "n114",
+        "distance": 26.81
+    },
+    "n111": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n125": {
+        "closest_sensor": "n105",
+        "distance": 286.04029999999995
+    },
+    "n127": {
+        "closest_sensor": "n114",
+        "distance": 120.2961
+    },
+    "n131": {
+        "closest_sensor": "n114",
+        "distance": 164.01319999999998
+    },
+    "n134": {
+        "closest_sensor": "n105",
+        "distance": 439.8757
+    },
+    "n137": {
+        "closest_sensor": "n506",
+        "distance": 155.9333
+    },
+    "n136": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n147": {
+        "closest_sensor": "n506",
+        "distance": 311.9064
+    },
+    "n138": {
+        "closest_sensor": "n495",
+        "distance": 182.3016
+    },
+    "n143": {
+        "closest_sensor": "n332",
+        "distance": 38.9322
+    },
+    "n139": {
+        "closest_sensor": "n516",
+        "distance": 45.9088
+    },
+    "n135": {
+        "closest_sensor": "n516",
+        "distance": 81.132
+    },
+    "n140": {
+        "closest_sensor": "n519",
+        "distance": 52.6327
+    },
+    "n144": {
+        "closest_sensor": "n519",
+        "distance": 110.9279
+    },
+    "n155": {
+        "closest_sensor": "n163",
+        "distance": 154.94539999999998
+    },
+    "n149": {
+        "closest_sensor": "n332",
+        "distance": 123.5329
+    },
+    "n148": {
+        "closest_sensor": "n506",
+        "distance": 352.7074
+    },
+    "n151": {
+        "closest_sensor": "n506",
+        "distance": 391.4154
+    },
+    "n160": {
+        "closest_sensor": "n332",
+        "distance": 208.5431
+    },
+    "n164": {
+        "closest_sensor": "n332",
+        "distance": 259.7352
+    },
+    "n161": {
+        "closest_sensor": "n332",
+        "distance": 421.1942
+    },
+    "n163": {
+        "closest_sensor": "n163",
+        "distance": 0
+    },
+    "n169": {
+        "closest_sensor": "n163",
+        "distance": 271.1427
+    },
+    "n166": {
+        "closest_sensor": "n332",
+        "distance": 326.1258
+    },
+    "n170": {
+        "closest_sensor": "n332",
+        "distance": 497.14959999999996
+    },
+    "n167": {
+        "closest_sensor": "n163",
+        "distance": 49.7696
+    },
+    "n176": {
+        "closest_sensor": "n163",
+        "distance": 342.69
+    },
+    "n174": {
+        "closest_sensor": "n332",
+        "distance": 434.65549999999996
+    },
+    "n173": {
+        "closest_sensor": "n332",
+        "distance": 405.9378
+    },
+    "n172": {
+        "closest_sensor": "n549",
+        "distance": 115.25229999999999
+    },
+    "n179": {
+        "closest_sensor": "n549",
+        "distance": 219.06599999999997
+    },
+    "n178": {
+        "closest_sensor": "n332",
+        "distance": 490.85569999999996
+    },
+    "n180": {
+        "closest_sensor": "n332",
+        "distance": 527.0224999999999
+    },
+    "n183": {
+        "closest_sensor": "n549",
+        "distance": 251.67549999999997
+    },
+    "n185": {
+        "closest_sensor": "n549",
+        "distance": 288.73949999999996
+    },
+    "n186": {
+        "closest_sensor": "n188",
+        "distance": 460.926
+    },
+    "n181": {
+        "closest_sensor": "n332",
+        "distance": 561.7807999999999
+    },
+    "n192": {
+        "closest_sensor": "n188",
+        "distance": 449.4844
+    },
+    "n195": {
+        "closest_sensor": "n188",
+        "distance": 86.8847
+    },
+    "n196": {
+        "closest_sensor": "n188",
+        "distance": 501.9465
+    },
+    "n197": {
+        "closest_sensor": "n188",
+        "distance": 176.38739999999999
+    },
+    "n199": {
+        "closest_sensor": "n188",
+        "distance": 250.5999
+    },
+    "n202": {
+        "closest_sensor": "n188",
+        "distance": 761.1722000000001
+    },
+    "n201": {
+        "closest_sensor": "n613",
+        "distance": 150.4921
+    },
+    "n206": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n205": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n208": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n217": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n215": {
+        "closest_sensor": "n215",
+        "distance": 0
+    },
+    "n209": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n210": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n211": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n213": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n212": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n216": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n223": {
+        "closest_sensor": "n644",
+        "distance": 163.70579999999998
+    },
+    "n224": {
+        "closest_sensor": "n726",
+        "distance": 1024.1099
+    },
+    "n226": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n228": {
+        "closest_sensor": "n679",
+        "distance": 312.11620000000005
+    },
+    "n232": {
+        "closest_sensor": "n679",
+        "distance": 373.7977000000001
+    },
+    "n234": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n237": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n243": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n241": {
+        "closest_sensor": "n726",
+        "distance": 742.5906
+    },
+    "n247": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n251": {
+        "closest_sensor": "n726",
+        "distance": 626.8557
+    },
+    "n244": {
+        "closest_sensor": "n726",
+        "distance": 689.0267
+    },
+    "n248": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n257": {
+        "closest_sensor": "n679",
+        "distance": 48.8594
+    },
+    "n252": {
+        "closest_sensor": "n679",
+        "distance": 422.64880000000005
+    },
+    "n260": {
+        "closest_sensor": "n752",
+        "distance": 913.1451
+    },
+    "n256": {
+        "closest_sensor": "n752",
+        "distance": 937.2733999999999
+    },
+    "n262": {
+        "closest_sensor": "n726",
+        "distance": 389.77869999999996
+    },
+    "n270": {
+        "closest_sensor": "n752",
+        "distance": 789.5358999999999
+    },
+    "n276": {
+        "closest_sensor": "n752",
+        "distance": 855.6271999999999
+    },
+    "n271": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n274": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n281": {
+        "closest_sensor": "n296",
+        "distance": 186.32569999999998
+    },
+    "n282": {
+        "closest_sensor": "n296",
+        "distance": 238.15179999999998
+    },
+    "n289": {
+        "closest_sensor": "n726",
+        "distance": 49.2985
+    },
+    "n284": {
+        "closest_sensor": "n726",
+        "distance": 160.3318
+    },
+    "n290": {
+        "closest_sensor": "n726",
+        "distance": 232.0544
+    },
+    "n292": {
+        "closest_sensor": "n296",
+        "distance": 32.8724
+    },
+    "n295": {
+        "closest_sensor": "n296",
+        "distance": 67.06559999999999
+    },
+    "n296": {
+        "closest_sensor": "n296",
+        "distance": 0
+    },
+    "n300": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n298": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n299": {
+        "closest_sensor": "n740",
+        "distance": 541.0651
+    },
+    "n305": {
+        "closest_sensor": "n752",
+        "distance": 95.02610000000001
+    },
+    "n306": {
+        "closest_sensor": "n752",
+        "distance": 149.7124
+    },
+    "n311": {
+        "closest_sensor": "n740",
+        "distance": 140.5935
+    },
+    "n313": {
+        "closest_sensor": "n752",
+        "distance": 304.3261
+    },
+    "n319": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n320": {
+        "closest_sensor": "n740",
+        "distance": 136.0085
+    },
+    "n321": {
+        "closest_sensor": "n769",
+        "distance": 496.18510000000003
+    },
+    "n317": {
+        "closest_sensor": "n769",
+        "distance": 536.4536
+    },
+    "n322": {
+        "closest_sensor": "n740",
+        "distance": 202.77949999999998
+    },
+    "n323": {
+        "closest_sensor": "n740",
+        "distance": 259.2911
+    },
+    "n326": {
+        "closest_sensor": "n769",
+        "distance": 332.70599999999996
+    },
+    "n325": {
+        "closest_sensor": "n769",
+        "distance": 371.8314
+    },
+    "n331": {
+        "closest_sensor": "n769",
+        "distance": 193.2934
+    },
+    "n98": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n95": {
+        "closest_sensor": "n469",
+        "distance": 137.144
+    },
+    "n124": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n130": {
+        "closest_sensor": "n495",
+        "distance": 91.24889999999999
+    },
+    "n142": {
+        "closest_sensor": "n506",
+        "distance": 230.0773
+    },
+    "n154": {
+        "closest_sensor": "n332",
+        "distance": 81.08699999999999
+    },
+    "n182": {
+        "closest_sensor": "n332",
+        "distance": 598.2597999999999
+    },
+    "n220": {
+        "closest_sensor": "n636",
+        "distance": 247.6765
+    },
+    "n255": {
+        "closest_sensor": "n726",
+        "distance": 596.7086999999999
+    },
+    "n261": {
+        "closest_sensor": "n752",
+        "distance": 859.4762999999999
+    },
+    "n263": {
+        "closest_sensor": "n722",
+        "distance": 551.4367000000001
+    },
+    "n266": {
+        "closest_sensor": "n726",
+        "distance": 562.4918
+    },
+    "n264": {
+        "closest_sensor": "n726",
+        "distance": 494.3924999999999
+    },
+    "n307": {
+        "closest_sensor": "n740",
+        "distance": 213.5824
+    },
+    "n304": {
+        "closest_sensor": "n740",
+        "distance": 255.2869
+    },
+    "n315": {
+        "closest_sensor": "n752",
+        "distance": 275.3599
+    },
+    "n324": {
+        "closest_sensor": "n740",
+        "distance": 327.24989999999997
+    },
+    "n334": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n333": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n332": {
+        "closest_sensor": "n332",
+        "distance": 0
+    },
+    "R1": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n303": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n128": {
+        "closest_sensor": "n495",
+        "distance": 45.6033
+    },
+    "n129": {
+        "closest_sensor": "n495",
+        "distance": 372.27540000000005
+    },
+    "n69": {
+        "closest_sensor": "n495",
+        "distance": 430.88290000000006
+    },
+    "n191": {
+        "closest_sensor": "n188",
+        "distance": 632.0579
+    },
+    "n184": {
+        "closest_sensor": "n163",
+        "distance": 407.9788
+    },
+    "n152": {
+        "closest_sensor": "n516",
+        "distance": 204.51139999999998
+    },
+    "n158": {
+        "closest_sensor": "n516",
+        "distance": 256.19559999999996
+    },
+    "R2": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n336": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n198": {
+        "closest_sensor": "n613",
+        "distance": 173.90480000000002
+    },
+    "n341": {
+        "closest_sensor": "n613",
+        "distance": 238.4599
+    },
+    "T1": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n343": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n44": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n8": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n5": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n11": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n13": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n17": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n344": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n346": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n345": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n19": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n23": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n347": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n1": {
+        "closest_sensor": "n1",
+        "distance": 0
+    },
+    "n348": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n349": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n350": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n351": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n352": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n353": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n354": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n355": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n356": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n357": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n358": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n359": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n360": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n361": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n362": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n363": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n364": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n365": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n366": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n367": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n368": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n369": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n370": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n371": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n372": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n373": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n374": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n375": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n376": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n377": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n378": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n379": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n380": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n381": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n382": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n383": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n384": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n385": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n386": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n387": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n388": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n389": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n47": {
+        "closest_sensor": "n636",
+        "distance": 1417.4205000000002
+    },
+    "n390": {
+        "closest_sensor": "n636",
+        "distance": 1449.9912000000002
+    },
+    "n391": {
+        "closest_sensor": "n636",
+        "distance": 1509.2084000000002
+    },
+    "n392": {
+        "closest_sensor": "n636",
+        "distance": 1559.9343000000001
+    },
+    "n393": {
+        "closest_sensor": "n636",
+        "distance": 1368.8024000000003
+    },
+    "n394": {
+        "closest_sensor": "n636",
+        "distance": 1315.8422000000003
+    },
+    "n395": {
+        "closest_sensor": "n636",
+        "distance": 1265.1213000000002
+    },
+    "n396": {
+        "closest_sensor": "n636",
+        "distance": 1214.5146000000002
+    },
+    "n397": {
+        "closest_sensor": "n636",
+        "distance": 1165.8670000000002
+    },
+    "n398": {
+        "closest_sensor": "n636",
+        "distance": 1117.3480000000002
+    },
+    "n399": {
+        "closest_sensor": "n636",
+        "distance": 1065.6227000000001
+    },
+    "n75": {
+        "closest_sensor": "n636",
+        "distance": 1015.8233000000001
+    },
+    "n400": {
+        "closest_sensor": "n636",
+        "distance": 1351.5378000000003
+    },
+    "n401": {
+        "closest_sensor": "n636",
+        "distance": 1298.8512000000003
+    },
+    "n59": {
+        "closest_sensor": "n636",
+        "distance": 1246.6079000000002
+    },
+    "n402": {
+        "closest_sensor": "n636",
+        "distance": 1447.7625000000003
+    },
+    "n403": {
+        "closest_sensor": "n410",
+        "distance": 212.3896
+    },
+    "n404": {
+        "closest_sensor": "n410",
+        "distance": 157.3099
+    },
+    "n405": {
+        "closest_sensor": "n54",
+        "distance": 117.13839999999999
+    },
+    "n49": {
+        "closest_sensor": "n54",
+        "distance": 160.50719999999998
+    },
+    "n406": {
+        "closest_sensor": "n415",
+        "distance": 97.5757
+    },
+    "n58": {
+        "closest_sensor": "n415",
+        "distance": 57.8722
+    },
+    "n407": {
+        "closest_sensor": "n415",
+        "distance": 110.208
+    },
+    "n408": {
+        "closest_sensor": "n429",
+        "distance": 270.90439999999995
+    },
+    "n409": {
+        "closest_sensor": "n636",
+        "distance": 1301.5693
+    },
+    "n410": {
+        "closest_sensor": "n410",
+        "distance": 0
+    },
+    "n411": {
+        "closest_sensor": "n636",
+        "distance": 1159.9963000000002
+    },
+    "n68": {
+        "closest_sensor": "n636",
+        "distance": 1104.7291000000002
+    },
+    "n412": {
+        "closest_sensor": "n415",
+        "distance": 271.1787
+    },
+    "n413": {
+        "closest_sensor": "n415",
+        "distance": 323.1741
+    },
+    "n414": {
+        "closest_sensor": "n415",
+        "distance": 482.94630000000006
+    },
+    "n415": {
+        "closest_sensor": "n415",
+        "distance": 0
+    },
+    "n117": {
+        "closest_sensor": "n495",
+        "distance": 256.7673
+    },
+    "n416": {
+        "closest_sensor": "n636",
+        "distance": 1198.9410000000003
+    },
+    "n417": {
+        "closest_sensor": "n636",
+        "distance": 1152.2937000000002
+    },
+    "n418": {
+        "closest_sensor": "n519",
+        "distance": 481.9075000000001
+    },
+    "n419": {
+        "closest_sensor": "n519",
+        "distance": 437.80430000000007
+    },
+    "n420": {
+        "closest_sensor": "n636",
+        "distance": 1157.9231000000002
+    },
+    "n421": {
+        "closest_sensor": "n636",
+        "distance": 1107.1855000000003
+    },
+    "n422": {
+        "closest_sensor": "n636",
+        "distance": 1056.5491000000002
+    },
+    "n423": {
+        "closest_sensor": "n636",
+        "distance": 1005.9334000000001
+    },
+    "n424": {
+        "closest_sensor": "n636",
+        "distance": 956.2379000000001
+    },
+    "n82": {
+        "closest_sensor": "n636",
+        "distance": 907.8706000000001
+    },
+    "n425": {
+        "closest_sensor": "n519",
+        "distance": 457.95090000000005
+    },
+    "n426": {
+        "closest_sensor": "n519",
+        "distance": 413.84200000000004
+    },
+    "n427": {
+        "closest_sensor": "n429",
+        "distance": 101.90979999999999
+    },
+    "n428": {
+        "closest_sensor": "n429",
+        "distance": 52.2806
+    },
+    "n429": {
+        "closest_sensor": "n429",
+        "distance": 0
+    },
+    "n430": {
+        "closest_sensor": "n636",
+        "distance": 998.3122
+    },
+    "n431": {
+        "closest_sensor": "n636",
+        "distance": 950.2319
+    },
+    "n432": {
+        "closest_sensor": "n636",
+        "distance": 902.5692
+    },
+    "n433": {
+        "closest_sensor": "n636",
+        "distance": 854.7239000000001
+    },
+    "n434": {
+        "closest_sensor": "n636",
+        "distance": 1058.6622000000002
+    },
+    "n435": {
+        "closest_sensor": "n495",
+        "distance": 491.9410000000001
+    },
+    "n436": {
+        "closest_sensor": "n458",
+        "distance": 374.40709999999996
+    },
+    "n437": {
+        "closest_sensor": "n458",
+        "distance": 344.2156
+    },
+    "n438": {
+        "closest_sensor": "n636",
+        "distance": 961.4094000000001
+    },
+    "n439": {
+        "closest_sensor": "n519",
+        "distance": 317.26640000000003
+    },
+    "n440": {
+        "closest_sensor": "n342",
+        "distance": 516.9757999999999
+    },
+    "n441": {
+        "closest_sensor": "n342",
+        "distance": 472.46539999999993
+    },
+    "n442": {
+        "closest_sensor": "n342",
+        "distance": 415.69109999999995
+    },
+    "n87": {
+        "closest_sensor": "n342",
+        "distance": 381.32179999999994
+    },
+    "n443": {
+        "closest_sensor": "n519",
+        "distance": 334.31309999999996
+    },
+    "n444": {
+        "closest_sensor": "n519",
+        "distance": 290.64549999999997
+    },
+    "n84": {
+        "closest_sensor": "n519",
+        "distance": 246.67139999999998
+    },
+    "n445": {
+        "closest_sensor": "n519",
+        "distance": 202.91649999999998
+    },
+    "n446": {
+        "closest_sensor": "n458",
+        "distance": 188.6577
+    },
+    "n447": {
+        "closest_sensor": "n458",
+        "distance": 141.2073
+    },
+    "n448": {
+        "closest_sensor": "n458",
+        "distance": 91.9957
+    },
+    "n449": {
+        "closest_sensor": "n636",
+        "distance": 855.768
+    },
+    "n450": {
+        "closest_sensor": "n636",
+        "distance": 826.1766000000001
+    },
+    "n83": {
+        "closest_sensor": "n636",
+        "distance": 874.3269000000001
+    },
+    "n451": {
+        "closest_sensor": "n636",
+        "distance": 779.2165000000001
+    },
+    "n452": {
+        "closest_sensor": "n519",
+        "distance": 294.9966
+    },
+    "n453": {
+        "closest_sensor": "n519",
+        "distance": 344.695
+    },
+    "n454": {
+        "closest_sensor": "n342",
+        "distance": 332.64959999999996
+    },
+    "n455": {
+        "closest_sensor": "n342",
+        "distance": 281.44599999999997
+    },
+    "n456": {
+        "closest_sensor": "n342",
+        "distance": 231.4886
+    },
+    "n457": {
+        "closest_sensor": "n342",
+        "distance": 182.3662
+    },
+    "n93": {
+        "closest_sensor": "n342",
+        "distance": 132.23409999999998
+    },
+    "n458": {
+        "closest_sensor": "n458",
+        "distance": 0
+    },
+    "n459": {
+        "closest_sensor": "n163",
+        "distance": 367.0405
+    },
+    "n460": {
+        "closest_sensor": "n163",
+        "distance": 327.5752
+    },
+    "n461": {
+        "closest_sensor": "n636",
+        "distance": 681.8398000000001
+    },
+    "n462": {
+        "closest_sensor": "n636",
+        "distance": 634.2098000000001
+    },
+    "n340": {
+        "closest_sensor": "n636",
+        "distance": 586.792
+    },
+    "n463": {
+        "closest_sensor": "n163",
+        "distance": 545.2786
+    },
+    "n464": {
+        "closest_sensor": "n163",
+        "distance": 499.1516
+    },
+    "n465": {
+        "closest_sensor": "n163",
+        "distance": 454.34929999999997
+    },
+    "n466": {
+        "closest_sensor": "n342",
+        "distance": 88.64959999999999
+    },
+    "n467": {
+        "closest_sensor": "n342",
+        "distance": 44.0712
+    },
+    "n342": {
+        "closest_sensor": "n342",
+        "distance": 0
+    },
+    "n468": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n469": {
+        "closest_sensor": "n469",
+        "distance": 0
+    },
+    "n470": {
+        "closest_sensor": "n469",
+        "distance": 51.2881
+    },
+    "n471": {
+        "closest_sensor": "n469",
+        "distance": 89.4119
+    },
+    "n472": {
+        "closest_sensor": "n469",
+        "distance": 176.6373
+    },
+    "n473": {
+        "closest_sensor": "n105",
+        "distance": 83.5187
+    },
+    "n474": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n100": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n475": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n476": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n477": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n478": {
+        "closest_sensor": "n105",
+        "distance": 224.51389999999998
+    },
+    "n479": {
+        "closest_sensor": "n105",
+        "distance": 267.9389
+    },
+    "n480": {
+        "closest_sensor": "n105",
+        "distance": 314.1074
+    },
+    "n481": {
+        "closest_sensor": "n105",
+        "distance": 360.6065
+    },
+    "n482": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n483": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n484": {
+        "closest_sensor": "n105",
+        "distance": 212.26629999999997
+    },
+    "n485": {
+        "closest_sensor": "n105",
+        "distance": 259.00649999999996
+    },
+    "n486": {
+        "closest_sensor": "n114",
+        "distance": 159.09910000000002
+    },
+    "n487": {
+        "closest_sensor": "n114",
+        "distance": 67.4262
+    },
+    "n488": {
+        "closest_sensor": "n105",
+        "distance": 131.73899999999998
+    },
+    "n489": {
+        "closest_sensor": "n105",
+        "distance": 183.48189999999997
+    },
+    "n490": {
+        "closest_sensor": "n105",
+        "distance": 234.83119999999997
+    },
+    "n491": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n492": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n493": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n123": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n494": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n495": {
+        "closest_sensor": "n495",
+        "distance": 0
+    },
+    "n496": {
+        "closest_sensor": "n495",
+        "distance": 203.3323
+    },
+    "n497": {
+        "closest_sensor": "n495",
+        "distance": 145.4048
+    },
+    "n498": {
+        "closest_sensor": "n495",
+        "distance": 320.68899999999996
+    },
+    "n499": {
+        "closest_sensor": "n114",
+        "distance": 75.1455
+    },
+    "n500": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n501": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n502": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n503": {
+        "closest_sensor": "n114",
+        "distance": 162.4212
+    },
+    "n504": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n505": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n506": {
+        "closest_sensor": "n506",
+        "distance": 0
+    },
+    "n132": {
+        "closest_sensor": "n506",
+        "distance": 66.1127
+    },
+    "n507": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n508": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n509": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n510": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n511": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n512": {
+        "closest_sensor": "n105",
+        "distance": 334.679
+    },
+    "n513": {
+        "closest_sensor": "n105",
+        "distance": 386.2018
+    },
+    "n514": {
+        "closest_sensor": "n114",
+        "distance": 305.1581
+    },
+    "n515": {
+        "closest_sensor": "n114",
+        "distance": 352.0047
+    },
+    "n516": {
+        "closest_sensor": "n516",
+        "distance": 0
+    },
+    "n517": {
+        "closest_sensor": "n495",
+        "distance": 95.5471
+    },
+    "n518": {
+        "closest_sensor": "n495",
+        "distance": 146.2945
+    },
+    "n519": {
+        "closest_sensor": "n519",
+        "distance": 0
+    },
+    "n520": {
+        "closest_sensor": "n495",
+        "distance": 324.61940000000004
+    },
+    "n521": {
+        "closest_sensor": "n495",
+        "distance": 274.96520000000004
+    },
+    "n522": {
+        "closest_sensor": "n495",
+        "distance": 137.231
+    },
+    "n523": {
+        "closest_sensor": "n506",
+        "distance": 112.3226
+    },
+    "n524": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n525": {
+        "closest_sensor": "n495",
+        "distance": 239.72570000000002
+    },
+    "n526": {
+        "closest_sensor": "n516",
+        "distance": 99.81909999999999
+    },
+    "n527": {
+        "closest_sensor": "n516",
+        "distance": 150.04919999999998
+    },
+    "n528": {
+        "closest_sensor": "n495",
+        "distance": 497.44270000000006
+    },
+    "n529": {
+        "closest_sensor": "n495",
+        "distance": 449.62050000000005
+    },
+    "n530": {
+        "closest_sensor": "n506",
+        "distance": 281.0631
+    },
+    "n531": {
+        "closest_sensor": "n506",
+        "distance": 271.3199
+    },
+    "n532": {
+        "closest_sensor": "n332",
+        "distance": 81.2962
+    },
+    "n533": {
+        "closest_sensor": "n332",
+        "distance": 77.6959
+    },
+    "n534": {
+        "closest_sensor": "n332",
+        "distance": 582.1264000000001
+    },
+    "n535": {
+        "closest_sensor": "n332",
+        "distance": 526.6664000000001
+    },
+    "n536": {
+        "closest_sensor": "n332",
+        "distance": 477.9413
+    },
+    "n537": {
+        "closest_sensor": "n495",
+        "distance": 349.10580000000004
+    },
+    "n538": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n539": {
+        "closest_sensor": "n332",
+        "distance": 168.7018
+    },
+    "n540": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n541": {
+        "closest_sensor": "n332",
+        "distance": 40.3916
+    },
+    "n542": {
+        "closest_sensor": "n163",
+        "distance": 103.48419999999999
+    },
+    "n543": {
+        "closest_sensor": "n163",
+        "distance": 51.9053
+    },
+    "n544": {
+        "closest_sensor": "n332",
+        "distance": 208.8817
+    },
+    "n165": {
+        "closest_sensor": "n332",
+        "distance": 261.0797
+    },
+    "n545": {
+        "closest_sensor": "n516",
+        "distance": 293.94379999999995
+    },
+    "n546": {
+        "closest_sensor": "n516",
+        "distance": 330.85159999999996
+    },
+    "n547": {
+        "closest_sensor": "n516",
+        "distance": 378.52009999999996
+    },
+    "n548": {
+        "closest_sensor": "n516",
+        "distance": 436.2837999999999
+    },
+    "n549": {
+        "closest_sensor": "n549",
+        "distance": 0
+    },
+    "n550": {
+        "closest_sensor": "n549",
+        "distance": 57.4343
+    },
+    "n551": {
+        "closest_sensor": "n163",
+        "distance": 140.0294
+    },
+    "n552": {
+        "closest_sensor": "n163",
+        "distance": 95.1286
+    },
+    "n553": {
+        "closest_sensor": "n332",
+        "distance": 262.8892
+    },
+    "n554": {
+        "closest_sensor": "n332",
+        "distance": 317.6453
+    },
+    "n555": {
+        "closest_sensor": "n332",
+        "distance": 373.3687
+    },
+    "n556": {
+        "closest_sensor": "n332",
+        "distance": 381.779
+    },
+    "n557": {
+        "closest_sensor": "n332",
+        "distance": 559.497
+    },
+    "n558": {
+        "closest_sensor": "n332",
+        "distance": 304.3394
+    },
+    "n559": {
+        "closest_sensor": "n332",
+        "distance": 349.19190000000003
+    },
+    "n560": {
+        "closest_sensor": "n332",
+        "distance": 395.2223
+    },
+    "n561": {
+        "closest_sensor": "n332",
+        "distance": 439.1646
+    },
+    "n562": {
+        "closest_sensor": "n332",
+        "distance": 313.504
+    },
+    "n563": {
+        "closest_sensor": "n332",
+        "distance": 376.423
+    },
+    "n564": {
+        "closest_sensor": "n332",
+        "distance": 428.2324
+    },
+    "n565": {
+        "closest_sensor": "n332",
+        "distance": 480.2442
+    },
+    "n566": {
+        "closest_sensor": "n332",
+        "distance": 532.2312999999999
+    },
+    "n567": {
+        "closest_sensor": "n332",
+        "distance": 587.3066999999999
+    },
+    "n568": {
+        "closest_sensor": "n332",
+        "distance": 538.1366999999999
+    },
+    "n569": {
+        "closest_sensor": "n332",
+        "distance": 417.9306
+    },
+    "n570": {
+        "closest_sensor": "n332",
+        "distance": 467.60880000000003
+    },
+    "n571": {
+        "closest_sensor": "n332",
+        "distance": 518.8045000000001
+    },
+    "n572": {
+        "closest_sensor": "n332",
+        "distance": 568.2886000000001
+    },
+    "n573": {
+        "closest_sensor": "n332",
+        "distance": 458.4294
+    },
+    "n574": {
+        "closest_sensor": "n332",
+        "distance": 512.7598
+    },
+    "n575": {
+        "closest_sensor": "n332",
+        "distance": 564.2119
+    },
+    "n576": {
+        "closest_sensor": "n188",
+        "distance": 75.9126
+    },
+    "n577": {
+        "closest_sensor": "n332",
+        "distance": 611.0562999999999
+    },
+    "n578": {
+        "closest_sensor": "n163",
+        "distance": 374.0098
+    },
+    "n579": {
+        "closest_sensor": "n332",
+        "distance": 638.3070999999999
+    },
+    "n580": {
+        "closest_sensor": "n188",
+        "distance": 411.8918
+    },
+    "n581": {
+        "closest_sensor": "n188",
+        "distance": 184.6396
+    },
+    "n187": {
+        "closest_sensor": "n188",
+        "distance": 235.9699
+    },
+    "n582": {
+        "closest_sensor": "n188",
+        "distance": 135.2337
+    },
+    "n583": {
+        "closest_sensor": "n188",
+        "distance": 676.3616000000001
+    },
+    "n584": {
+        "closest_sensor": "n188",
+        "distance": 728.6352
+    },
+    "n585": {
+        "closest_sensor": "n188",
+        "distance": 776.792
+    },
+    "n586": {
+        "closest_sensor": "n188",
+        "distance": 589.7482
+    },
+    "n587": {
+        "closest_sensor": "n188",
+        "distance": 546.1034
+    },
+    "n588": {
+        "closest_sensor": "n188",
+        "distance": 396.2555
+    },
+    "n589": {
+        "closest_sensor": "n188",
+        "distance": 288.71139999999997
+    },
+    "n590": {
+        "closest_sensor": "n188",
+        "distance": 234.5383
+    },
+    "n591": {
+        "closest_sensor": "n188",
+        "distance": 131.25799999999998
+    },
+    "n592": {
+        "closest_sensor": "n188",
+        "distance": 452.5667
+    },
+    "n593": {
+        "closest_sensor": "n188",
+        "distance": 401.41040000000004
+    },
+    "n594": {
+        "closest_sensor": "n188",
+        "distance": 348.8944
+    },
+    "n595": {
+        "closest_sensor": "n188",
+        "distance": 298.7009
+    },
+    "n596": {
+        "closest_sensor": "n188",
+        "distance": 552.3543
+    },
+    "n597": {
+        "closest_sensor": "n188",
+        "distance": 605.6431
+    },
+    "n598": {
+        "closest_sensor": "n188",
+        "distance": 655.7915
+    },
+    "n200": {
+        "closest_sensor": "n613",
+        "distance": 43.8656
+    },
+    "n599": {
+        "closest_sensor": "n613",
+        "distance": 375.1586
+    },
+    "n600": {
+        "closest_sensor": "n613",
+        "distance": 329.25
+    },
+    "n601": {
+        "closest_sensor": "n613",
+        "distance": 280.9765
+    },
+    "n203": {
+        "closest_sensor": "n613",
+        "distance": 234.0479
+    },
+    "n602": {
+        "closest_sensor": "n613",
+        "distance": 130.9182
+    },
+    "n603": {
+        "closest_sensor": "n613",
+        "distance": 86.6281
+    },
+    "n604": {
+        "closest_sensor": "n188",
+        "distance": 297.37489999999997
+    },
+    "n605": {
+        "closest_sensor": "n188",
+        "distance": 340.3062
+    },
+    "n606": {
+        "closest_sensor": "n188",
+        "distance": 385.8881
+    },
+    "n607": {
+        "closest_sensor": "n188",
+        "distance": 431.843
+    },
+    "n204": {
+        "closest_sensor": "n188",
+        "distance": 476.74890000000005
+    },
+    "n608": {
+        "closest_sensor": "n188",
+        "distance": 291.2486
+    },
+    "n609": {
+        "closest_sensor": "n188",
+        "distance": 350.3461
+    },
+    "n610": {
+        "closest_sensor": "n188",
+        "distance": 407.49219999999997
+    },
+    "n611": {
+        "closest_sensor": "n188",
+        "distance": 454.87519999999995
+    },
+    "n612": {
+        "closest_sensor": "n188",
+        "distance": 501.59279999999995
+    },
+    "n613": {
+        "closest_sensor": "n613",
+        "distance": 0
+    },
+    "n614": {
+        "closest_sensor": "n613",
+        "distance": 96.75319999999999
+    },
+    "n615": {
+        "closest_sensor": "n188",
+        "distance": 647.8690000000001
+    },
+    "n616": {
+        "closest_sensor": "n188",
+        "distance": 585.0499000000001
+    },
+    "n617": {
+        "closest_sensor": "n188",
+        "distance": 537.1701
+    },
+    "n618": {
+        "closest_sensor": "n613",
+        "distance": 193.0505
+    },
+    "n619": {
+        "closest_sensor": "n188",
+        "distance": 716.5056000000001
+    },
+    "n620": {
+        "closest_sensor": "n188",
+        "distance": 672.3950000000001
+    },
+    "n621": {
+        "closest_sensor": "n188",
+        "distance": 625.3472
+    },
+    "n214": {
+        "closest_sensor": "n188",
+        "distance": 580.268
+    },
+    "n622": {
+        "closest_sensor": "n188",
+        "distance": 529.5919
+    },
+    "n623": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n624": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n207": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n625": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n337": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n626": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n627": {
+        "closest_sensor": "n636",
+        "distance": 288.9533
+    },
+    "n628": {
+        "closest_sensor": "n636",
+        "distance": 384.28150000000005
+    },
+    "n629": {
+        "closest_sensor": "n636",
+        "distance": 440.1924
+    },
+    "n335": {
+        "closest_sensor": "n636",
+        "distance": 492.7869
+    },
+    "n630": {
+        "closest_sensor": "n644",
+        "distance": 254.1053
+    },
+    "n631": {
+        "closest_sensor": "n644",
+        "distance": 337.0254
+    },
+    "n338": {
+        "closest_sensor": "n613",
+        "distance": 371.4849
+    },
+    "n632": {
+        "closest_sensor": "n636",
+        "distance": 200.1055
+    },
+    "n633": {
+        "closest_sensor": "n636",
+        "distance": 148.7081
+    },
+    "n634": {
+        "closest_sensor": "n636",
+        "distance": 98.0134
+    },
+    "n635": {
+        "closest_sensor": "n636",
+        "distance": 47.5718
+    },
+    "n636": {
+        "closest_sensor": "n636",
+        "distance": 0
+    },
+    "n230": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n637": {
+        "closest_sensor": "n644",
+        "distance": 252.4789
+    },
+    "n638": {
+        "closest_sensor": "n644",
+        "distance": 299.8371
+    },
+    "n639": {
+        "closest_sensor": "n644",
+        "distance": 343.83680000000004
+    },
+    "n640": {
+        "closest_sensor": "n644",
+        "distance": 399.82020000000006
+    },
+    "n641": {
+        "closest_sensor": "n644",
+        "distance": 451.2651000000001
+    },
+    "n229": {
+        "closest_sensor": "n229",
+        "distance": 0
+    },
+    "n642": {
+        "closest_sensor": "n644",
+        "distance": 109.07589999999999
+    },
+    "n643": {
+        "closest_sensor": "n644",
+        "distance": 55.3704
+    },
+    "n644": {
+        "closest_sensor": "n644",
+        "distance": 0
+    },
+    "n645": {
+        "closest_sensor": "n679",
+        "distance": 524.027
+    },
+    "n646": {
+        "closest_sensor": "n679",
+        "distance": 476.59490000000005
+    },
+    "n647": {
+        "closest_sensor": "n679",
+        "distance": 420.77410000000003
+    },
+    "n648": {
+        "closest_sensor": "n679",
+        "distance": 369.32030000000003
+    },
+    "n649": {
+        "closest_sensor": "n726",
+        "distance": 986.285
+    },
+    "n650": {
+        "closest_sensor": "n726",
+        "distance": 936.5484
+    },
+    "n651": {
+        "closest_sensor": "n726",
+        "distance": 887.2807
+    },
+    "n652": {
+        "closest_sensor": "n726",
+        "distance": 983.304
+    },
+    "n225": {
+        "closest_sensor": "n726",
+        "distance": 918.3777
+    },
+    "n653": {
+        "closest_sensor": "n726",
+        "distance": 871.6863
+    },
+    "n654": {
+        "closest_sensor": "n726",
+        "distance": 823.1111
+    },
+    "n655": {
+        "closest_sensor": "n726",
+        "distance": 878.6447000000001
+    },
+    "n656": {
+        "closest_sensor": "n726",
+        "distance": 835.027
+    },
+    "n657": {
+        "closest_sensor": "n726",
+        "distance": 786.437
+    },
+    "n658": {
+        "closest_sensor": "n679",
+        "distance": 261.9252
+    },
+    "n659": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n660": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n661": {
+        "closest_sensor": "n679",
+        "distance": 574.1281000000001
+    },
+    "n662": {
+        "closest_sensor": "n679",
+        "distance": 522.7193000000001
+    },
+    "n663": {
+        "closest_sensor": "n679",
+        "distance": 458.03290000000004
+    },
+    "n664": {
+        "closest_sensor": "n679",
+        "distance": 219.32890000000003
+    },
+    "n665": {
+        "closest_sensor": "n679",
+        "distance": 270.04900000000004
+    },
+    "n666": {
+        "closest_sensor": "n679",
+        "distance": 320.19680000000005
+    },
+    "n667": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n668": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n669": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n670": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n671": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n672": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n673": {
+        "closest_sensor": "n752",
+        "distance": 1048.272
+    },
+    "n674": {
+        "closest_sensor": "n752",
+        "distance": 1002.1622
+    },
+    "n675": {
+        "closest_sensor": "n752",
+        "distance": 958.8666
+    },
+    "n676": {
+        "closest_sensor": "n726",
+        "distance": 636.0686
+    },
+    "n677": {
+        "closest_sensor": "n726",
+        "distance": 543.6927999999999
+    },
+    "n678": {
+        "closest_sensor": "n679",
+        "distance": 106.51570000000001
+    },
+    "n265": {
+        "closest_sensor": "n679",
+        "distance": 164.1125
+    },
+    "n679": {
+        "closest_sensor": "n679",
+        "distance": 0
+    },
+    "n680": {
+        "closest_sensor": "n722",
+        "distance": 599.9397000000001
+    },
+    "n681": {
+        "closest_sensor": "n752",
+        "distance": 809.1969999999999
+    },
+    "n682": {
+        "closest_sensor": "n752",
+        "distance": 759.0354999999998
+    },
+    "n272": {
+        "closest_sensor": "n752",
+        "distance": 708.4904999999999
+    },
+    "n683": {
+        "closest_sensor": "n726",
+        "distance": 446.89129999999994
+    },
+    "n684": {
+        "closest_sensor": "n722",
+        "distance": 500.98400000000004
+    },
+    "n685": {
+        "closest_sensor": "n722",
+        "distance": 453.60880000000003
+    },
+    "n686": {
+        "closest_sensor": "n722",
+        "distance": 405.8659
+    },
+    "n687": {
+        "closest_sensor": "n752",
+        "distance": 835.1923999999999
+    },
+    "n688": {
+        "closest_sensor": "n726",
+        "distance": 510.99030000000005
+    },
+    "n689": {
+        "closest_sensor": "n726",
+        "distance": 261.5301
+    },
+    "n690": {
+        "closest_sensor": "n726",
+        "distance": 211.20839999999998
+    },
+    "n691": {
+        "closest_sensor": "n752",
+        "distance": 749.0189999999999
+    },
+    "n692": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n693": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n694": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n695": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n696": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n697": {
+        "closest_sensor": "n752",
+        "distance": 665.2874999999999
+    },
+    "n698": {
+        "closest_sensor": "n752",
+        "distance": 623.5007999999999
+    },
+    "n285": {
+        "closest_sensor": "n752",
+        "distance": 580.3688
+    },
+    "n699": {
+        "closest_sensor": "n726",
+        "distance": 328.57989999999995
+    },
+    "n700": {
+        "closest_sensor": "n726",
+        "distance": 278.859
+    },
+    "n701": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n702": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n703": {
+        "closest_sensor": "n726",
+        "distance": 391.9783
+    },
+    "n704": {
+        "closest_sensor": "n726",
+        "distance": 344.1493
+    },
+    "n705": {
+        "closest_sensor": "n726",
+        "distance": 299.7512
+    },
+    "n706": {
+        "closest_sensor": "n752",
+        "distance": 721.0075999999999
+    },
+    "n288": {
+        "closest_sensor": "n288",
+        "distance": 0
+    },
+    "n707": {
+        "closest_sensor": "n752",
+        "distance": 632.7755
+    },
+    "n708": {
+        "closest_sensor": "n296",
+        "distance": 126.2884
+    },
+    "n709": {
+        "closest_sensor": "n740",
+        "distance": 352.5298
+    },
+    "n710": {
+        "closest_sensor": "n740",
+        "distance": 300.0521
+    },
+    "n711": {
+        "closest_sensor": "n740",
+        "distance": 247.3389
+    },
+    "n712": {
+        "closest_sensor": "n740",
+        "distance": 194.6581
+    },
+    "n713": {
+        "closest_sensor": "n752",
+        "distance": 534.0145
+    },
+    "n714": {
+        "closest_sensor": "n752",
+        "distance": 488.54380000000003
+    },
+    "n715": {
+        "closest_sensor": "n752",
+        "distance": 443.4884
+    },
+    "n716": {
+        "closest_sensor": "n752",
+        "distance": 396.0428
+    },
+    "n717": {
+        "closest_sensor": "n752",
+        "distance": 351.3415
+    },
+    "n718": {
+        "closest_sensor": "n722",
+        "distance": 194.6283
+    },
+    "n719": {
+        "closest_sensor": "n722",
+        "distance": 145.6293
+    },
+    "n720": {
+        "closest_sensor": "n722",
+        "distance": 99.5269
+    },
+    "n721": {
+        "closest_sensor": "n722",
+        "distance": 50.0271
+    },
+    "n722": {
+        "closest_sensor": "n722",
+        "distance": 0
+    },
+    "n723": {
+        "closest_sensor": "n740",
+        "distance": 183.9229
+    },
+    "n724": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n725": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n726": {
+        "closest_sensor": "n726",
+        "distance": 0
+    },
+    "n727": {
+        "closest_sensor": "n740",
+        "distance": 456.7224
+    },
+    "n728": {
+        "closest_sensor": "n740",
+        "distance": 405.86899999999997
+    },
+    "n729": {
+        "closest_sensor": "n740",
+        "distance": 357.51559999999995
+    },
+    "n730": {
+        "closest_sensor": "n740",
+        "distance": 305.94969999999995
+    },
+    "n731": {
+        "closest_sensor": "n740",
+        "distance": 253.87759999999997
+    },
+    "n732": {
+        "closest_sensor": "n740",
+        "distance": 578.0922
+    },
+    "n733": {
+        "closest_sensor": "n740",
+        "distance": 661.2749
+    },
+    "n734": {
+        "closest_sensor": "n740",
+        "distance": 719.8267
+    },
+    "n735": {
+        "closest_sensor": "n740",
+        "distance": 306.3016
+    },
+    "n736": {
+        "closest_sensor": "n740",
+        "distance": 260.3217
+    },
+    "n737": {
+        "closest_sensor": "n740",
+        "distance": 306.3137
+    },
+    "n738": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n739": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n740": {
+        "closest_sensor": "n740",
+        "distance": 0
+    },
+    "n741": {
+        "closest_sensor": "n740",
+        "distance": 492.96000000000004
+    },
+    "n742": {
+        "closest_sensor": "n740",
+        "distance": 447.0629
+    },
+    "n743": {
+        "closest_sensor": "n740",
+        "distance": 401.0269
+    },
+    "n744": {
+        "closest_sensor": "n740",
+        "distance": 352.8125
+    },
+    "n745": {
+        "closest_sensor": "n740",
+        "distance": 305.5127
+    },
+    "n746": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n747": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n748": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n749": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n750": {
+        "closest_sensor": "n752",
+        "distance": 296.31649999999996
+    },
+    "n751": {
+        "closest_sensor": "n752",
+        "distance": 47.4436
+    },
+    "n752": {
+        "closest_sensor": "n752",
+        "distance": 0
+    },
+    "n753": {
+        "closest_sensor": "n740",
+        "distance": 474.58709999999996
+    },
+    "n754": {
+        "closest_sensor": "n740",
+        "distance": 425.2254
+    },
+    "n755": {
+        "closest_sensor": "n740",
+        "distance": 376.3848
+    },
+    "n756": {
+        "closest_sensor": "n769",
+        "distance": 622.0753
+    },
+    "n757": {
+        "closest_sensor": "n769",
+        "distance": 574.9493
+    },
+    "n318": {
+        "closest_sensor": "n769",
+        "distance": 529.2709
+    },
+    "n758": {
+        "closest_sensor": "n740",
+        "distance": 177.1663
+    },
+    "n759": {
+        "closest_sensor": "n752",
+        "distance": 236.0926
+    },
+    "n760": {
+        "closest_sensor": "n769",
+        "distance": 576.1157000000001
+    },
+    "n761": {
+        "closest_sensor": "n769",
+        "distance": 534.8717
+    },
+    "n762": {
+        "closest_sensor": "n752",
+        "distance": 331.907
+    },
+    "n763": {
+        "closest_sensor": "n769",
+        "distance": 472.0021
+    },
+    "n764": {
+        "closest_sensor": "n769",
+        "distance": 433.4224
+    },
+    "n765": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n766": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n767": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n768": {
+        "closest_sensor": null,
+        "distance": Infinity
+    },
+    "n769": {
+        "closest_sensor": "n769",
+        "distance": 0
+    },
+    "n770": {
+        "closest_sensor": "n769",
+        "distance": 52.2339
+    },
+    "n329": {
+        "closest_sensor": "n769",
+        "distance": 102.3613
+    },
+    "n771": {
+        "closest_sensor": "n769",
+        "distance": 442.4728
+    },
+    "n772": {
+        "closest_sensor": "n769",
+        "distance": 386.8916
+    },
+    "n773": {
+        "closest_sensor": "n769",
+        "distance": 329.3612
+    },
+    "n330": {
+        "closest_sensor": "n769",
+        "distance": 273.2579
+    },
+    "n774": {
+        "closest_sensor": "n769",
+        "distance": 149.65879999999999
+    },
+    "n775": {
+        "closest_sensor": "n769",
+        "distance": 242.3961
+    },
+    "n776": {
+        "closest_sensor": "n636",
+        "distance": 540.2489
+    },
+    "n777": {
+        "closest_sensor": "n613",
+        "distance": 423.98339999999996
+    },
+    "n339": {
+        "closest_sensor": "n613",
+        "distance": 475.03149999999994
+    },
+    "n778": {
+        "closest_sensor": "n613",
+        "distance": 415.7966
+    },
+    "n779": {
+        "closest_sensor": "n613",
+        "distance": 458.55510000000004
+    },
+    "n780": {
+        "closest_sensor": "n613",
+        "distance": 333.4192
+    },
+    "n781": {
+        "closest_sensor": "n613",
+        "distance": 287.734
+    },
+    "n782": {
+        "closest_sensor": "n613",
+        "distance": 284.3164
+    }
+}

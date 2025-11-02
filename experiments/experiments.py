@@ -21,14 +21,11 @@ from sklearn.model_selection import KFold
 from sklearn.ensemble import RandomForestRegressor, ExtraTreesRegressor
 from sklearn.inspection import permutation_importance
 
+import matplotlib.pyplot as plt
+
 from tqdm import tqdm
-
-import random
-import time
-import pickle
-
-import sys
 import json
+import random
 import time
 
 #%%
@@ -92,6 +89,10 @@ day_len = 24*hour_len
 week_len = 7*day_len
 month_len = 4*week_len
 
+# read json file with sensor proximity information
+with open("shortest_paths_to_sensors.json", "r") as f:
+    closest_sensor_info = json.load(f)
+
 # read baseline file
 df_baseline = pd.read_csv('Baseline.csv')
 # remove timestamp column
@@ -99,6 +100,12 @@ df_baseline = df_baseline.drop(columns=['Unnamed: 0'])
 
 leak_diam_mm = 15  # leak diameter in mm
 n_repeats = 1   # number of repetitions of the experiment for each leaking pipe
+
+drift_localization = True
+
+# define explanation method and parameters
+explanation_method = FeatureImportanceRF
+explanation_params = {}
 
 
 # 389 leak nodes
@@ -129,12 +136,14 @@ leak_nodes = ['n3','n4','n5','n6','n10','n11','n14','n15','n17','n18','n22','n23
  'n578','n580','n582','n584','n587','n590','n591','n592','n594','n596','n598','n600',
  'n603','n605','n607','n609','n611','n613','n614','n615','n617','n619','n621','n622',
  'n623','n624','n625','n626','n627','n628','n632','n634','n636','n638','n640','n643',
- 'n646','n648','n649','n651','n652','n653','n655','n657','n658','n659','n661','n663'] #,
-#  'n665','n667','n669','n671','n673','n675','n676','n680','n682','n685','n687','n688',
-#  'n690','n691','n693','n695','n697','n699','n701','n704','n709','n711','n714','n716',
-#  'n719','n721','n722','n725','n726','n727','n729','n731','n734','n735','n737','n739',
-#  'n742','n744','n747','n749','n751','n753','n755','n757','n760','n763','n765','n767',
-#  'n769','n772','n779','n781','n782']
+ 'n646','n648','n649','n651','n652','n653','n655','n657','n658','n659','n661','n663',
+ 'n665','n667','n669','n671','n673','n675','n676','n680','n682','n685','n687','n688',
+ 'n690','n691','n693','n695','n697','n699','n701','n704','n709','n711','n714','n716',
+ 'n719','n721','n722','n725','n726','n727','n729','n731','n734','n735','n737','n739',
+ 'n742','n744','n747','n749','n751','n753','n755','n757','n760','n763','n765','n767',
+ 'n769','n772','n779','n781','n782']
+
+# leak_nodes = leak_nodes[:10]  # for testing, use only first 10 leak nodes
 
 
 #-------------------------------------------
@@ -157,10 +166,14 @@ for leak_node in leak_nodes:
     for split_idx, split_point in enumerate(split_points):
         print(f"Running experiment for leak node {leak_node}, repetition {split_idx+1}/{n_repeats}...")
 
+        # time
+        start_time = time.time()
+
         # initialize record
         record = {"leak_node": leak_node,
                   "leak_diam_mm": leak_diam_mm,
-                  "leak_at": split_point * 15 * 60}  # in seconds
+                  "leak_at": split_point * 15 * 60,     # in seconds
+                  "closest_sensor": closest_sensor_info[leak_node]["closest_sensor"]}
 
         # concatenate baseline and leak data at split point as numpy array
         data = pd.concat([df_baseline.iloc[:split_point], df.iloc[split_point:]], axis=0).reset_index(drop=True).to_numpy()
@@ -178,158 +191,77 @@ for leak_node in leak_nodes:
         # store results
         record["dd_score"] = min(dd_results)
         record["dd_timepoint"] = (np.argmin(dd_results) + 7 ) * day_len * 15 * 60  # in seconds
+                                                                                   # add 7 days to center the window on the detection point
+
+
+        # optional: visualize results above acertian threshold
+        # if min(dd_results) > 0.35:
+        #     # plot dd results
+        #     plt.figure(figsize=(10,6))
+        #     plt.plot(np.arange(len(dd_results))*day_len/ hour_len, dd_results, marker='o')
+        #     plt.axvline(x=(split_point - week_len) / hour_len, color='r', linestyle='--', label='Leak Start')
+        #     plt.xlabel('Time (hours)')
+        #     plt.ylabel('D3 Drift Score')
+        #     plt.title(f'Drift Detection Results for Leak Node {leak_node}, Leak Diameter {leak_diam_mm} mm')
+        #     plt.legend()
+        #     plt.show()
+
+
+        if drift_localization:
+            # 2. DRIFT LOCALIZATION / EXPLANATION
+            # retrieve drift time point
+            dd_timepoint = (np.argmin(dd_results) + 7 ) * day_len
+
+            # train - test split for explanation
+            X = data[dd_timepoint - week_len : dd_timepoint + week_len, :]
+            y = np.array(X.shape[0]//2*[0] + X.shape[0]//2*[1])  # first half is class 0, second half is class 1
+            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
+
+            # run explanations
+            model, feature_scores = explanation_method(X_train, y_train, **explanation_params)
+    
+            # record time
+            end_time = time.time()
+            record["execution_time_sec"] = end_time - start_time
+        
+            # ensure correct shape
+            if len(feature_scores.shape) != 1:
+                print("Deformed feature scores: '%s' %s"%(explanation_method,str(feature_scores.shape)))
+                feature_scores = feature_scores.ravel()
+            
+            record["explanation_feature_scores"] = {col: f"{score:.5f}" for col, score in zip(df.columns, feature_scores)}
+            record['best_explained_sensor'] = df.columns[np.argmax(feature_scores)]
+            record['second_best_explained_sensor'] = df.columns[np.argsort(feature_scores)[-2]]
 
         # append record to results
         results.append(record)
 
-# convert results to DataFrame and save to CSV
+
 results_df = pd.DataFrame(results)
-# results_df.to_csv(f'drift_detection_results_{leak_diam_mm}mm.csv', index=False)
 
+# convert results to DataFrame and save to CSV
+save_results = False
+if save_results:
+    results_df.to_csv(f'experiment_results_leak_{leak_diam_mm}mm.csv', index=False)
 
-# compute distances in time
-distances = np.abs((results_df['leak_at'] - results_df['dd_timepoint']))  # in seconds
 
-#plot distances against index
-import matplotlib.pyplot as plt
-plt.figure(figsize=(10,6))
-plt.plot(distances / 3600, marker='o', linestyle='', alpha=0.5)
-plt.xlabel('Experiment Index')
-plt.ylabel('Detection Delay (hours)')
-plt.title(f'Drift Detection Delay for Leak Diameter {leak_diam_mm} mm')
-plt.ylim(0, 100)   # limit y-axis to 100 hours
-plt.grid()
-plt.show()
 
+plots = False
+if plots:
+    # compute distances in time
+    distances = np.abs((results_df['leak_at'] - results_df['dd_timepoint']))  # in seconds
 
+    #plot distances against index
+    import matplotlib.pyplot as plt
+    plt.figure(figsize=(10,6))
+    plt.plot(distances / 3600, marker='o', linestyle='', alpha=0.5)
+    plt.xlabel('Experiment Index')
+    plt.ylabel('Detection Delay (hours)')
+    plt.title(f'Drift Detection Delay for Leak Diameter {leak_diam_mm} mm')
+    plt.ylim(0, 100)   # limit y-axis to 100 hours
+    plt.grid()
+    plt.show()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# # read measurements file
-# # df = pd.read_csv('Measurements.csv', delimiter=';', decimal=',')   # p257, incipient, 11 mm
-# df = pd.read_csv('Pressures_p461.csv') 
-# # remove timestamp column
-# df = df.drop(columns=['Timestamp'])
-# sensor_cols = df.columns.tolist()
-# # downsample to 1 every third row
-# df = df.iloc[::3, :].reset_index(drop=True)
-
-
-
-# # %%
-# # generate data
-# # leak_start = 90 * day_len
-
-# # concatenate baseline and leak data at leak start as numpy array
-# # data = pd.concat([df_baseline.iloc[:leak_start], df.iloc[leak_start:]], axis=0).reset_index(drop=True).to_numpy()
-# data = df.to_numpy()
-
-# #%%
-# # 1. DRIFT DETECTION
-# # run drift detection on sliding windows (one check every day, windows of two weeks)
-# i = 0
-# results = []
-# while i + 2*week_len < data.shape[0]:
-#     X = data[i:i+2*week_len, :]
-#     result = d3(X)
-#     results.append(result)
-#     i += day_len
-
-# print("The drift detection minimum score is obtained at day:", np.argmin(results))
-
-# # plot results
-# import matplotlib.pyplot as plt
-# plt.plot(results)
-# plt.xlabel('Days (processed every day)')
-# plt.ylabel('Drift Detection Score')
-# plt.title('Drift Detection Over Time')
-# plt.show()
-
-# # %%
-# # 2. DRIFT LOCALIZATION / EXPLANATION
-# # select the window with minimum score
-# i = np.argmin(results) * day_len
-# X = data[i:i+2*week_len, :]
-
-# methods = {fun.__name__:fun for fun in 
-#     [FeatureImportanceET, FeatureImportanceRF, PermutationFeatureImportanceRF,PermutationFeatureImportanceET]}
-
-
-# def drift_explanation(X, method, split, **params):
-#     y = np.array(X.shape[0]//2*[0] + X.shape[0]//2*[1])  # first half is class 0, second half is class 1
-#     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42*split)
     
-#     t0 = time.time()
-#     model,feature_scores = methods[method](X_train,y_train, **params)
-#     t1 = time.time()
-
-#     if len(feature_scores.shape) != 1:
-#         print("Deformed feature scores: '%s' %s"%(method,str(feature_scores.shape)))
-#         feature_scores = feature_scores.ravel()
-    
-#     return {"feature_scores":json.dumps(dict(zip(sensor_cols,map(lambda x: "%.5f"%x, list(feature_scores))))), "model_score": model.score(X_test,y_test), "time":t1-t0}
-
-
-# explanation_result = drift_explanation(X, method='FeatureImportanceRF', split=1)
-# feature_scores = json.loads(explanation_result['feature_scores'])
-
-# # print pair with higher feature score
-# max_feature = max(feature_scores, key=feature_scores.get)
-# print("Highest feature score:", max_feature, feature_scores[max_feature])
-
-# # %%
