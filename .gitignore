@@ -1,0 +1,30 @@
+# Python cache & environment
+__pycache__/
+*.pyc
+env/
+
+# VS Code settings
+.vscode/
+
+# Logs & environment files
+*.log
+*.env
+
+# GIS data
+*.shp
+*.shx
+*.dbf
+*.prj
+*.cpg
+
+# QGIS projects
+*.qgz
+*.qgs
+
+# ignore shapefiles, datasets folders and inp files
+*/_shapefiles_/
+*/Datasets/
+
+*.inp
+*.bin
+*.rpt
