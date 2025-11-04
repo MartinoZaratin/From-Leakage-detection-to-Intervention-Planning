@@ -89,6 +89,7 @@ day_len = 24*hour_len
 week_len = 7*day_len
 month_len = 4*week_len
 
+# ERROR: THE CLOSEST SENSOR HAS BEEN COMPUTED ON THE DISCONNECTED GRAPH
 # read json file with sensor proximity information
 with open("shortest_paths_to_sensors.json", "r") as f:
     closest_sensor_info = json.load(f)
@@ -261,7 +262,3 @@ if plots:
     plt.ylim(0, 100)   # limit y-axis to 100 hours
     plt.grid()
     plt.show()
-
-
-
-    

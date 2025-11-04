@@ -82,7 +82,7 @@ duration_days = 90
 report_step_min = 15  # in minutes
 
 # leak parameters
-leak_diam_mm = 15  # leak diameter in mm
+leak_diam_mm = 11  # leak diameter in mm
 
 # 389 leak nodes
 leak_nodes = ['n3','n4','n5','n6','n10','n11','n14','n15','n17','n18','n22','n23',

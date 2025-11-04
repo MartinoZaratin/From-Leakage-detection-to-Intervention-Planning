@@ -47,6 +47,8 @@ with open("shortest_paths_to_sensors.json", "w") as f:
 
 
 # add information to node shapefiles
-nodes["closest_sensor"] = nodes["id"].map(closest_sensors)
-nodes["distance_to_sensor"] = nodes["id"].map(distances)
-nodes.to_file("L-TOWN_Real_junctions_with_sensor_info.shp")
+save_to_shapefile = False
+if save_to_shapefile:
+    nodes["closest_sensor"] = nodes["id"].map(closest_sensors)
+    nodes["distance_to_sensor"] = nodes["id"].map(distances)
+    nodes.to_file("L-TOWN_Real_junctions_with_sensor_info.shp")
