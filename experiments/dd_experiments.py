@@ -1,7 +1,3 @@
-#%%
-'''
-This code runs drift detection and drift localization experiments for a given leakage size
-'''
 # --------------------
 # Load libraries
 # --------------------
@@ -22,15 +18,18 @@ from sklearn.ensemble import RandomForestRegressor, ExtraTreesRegressor
 from sklearn.inspection import permutation_importance
 
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 from tqdm import tqdm
 import json
 import random
 import time
 
+
+
 #%%
 # -------------------
-# define methods
+# define drift detection methods
 #-------------------
 # drift detection methods
 def d3(X,clf = LogisticRegression(solver='liblinear')):
@@ -50,49 +49,35 @@ def d3(X,clf = LogisticRegression(solver='liblinear')):
     
     return 1 - auc_score
 
-def knn_d3(X):
-    return d3(X, clf=KNeighborsClassifier(n_neighbors=5))
+def knn_d3(X, n_neighbors=200):
+    return d3(X, clf=KNeighborsClassifier(n_neighbors=n_neighbors))
+
+# def knn_d3_20(X):
+#     return knn_d3(X, n_neighbors=20)
+
+# def knn_d3_50(X):
+#     return knn_d3(X, n_neighbors=50)
+
+# def knn_d3_100(X):
+#     return knn_d3(X, n_neighbors=100)
 
 
 def ks(X, s=None):
     if s is None:
         s = int(X.shape[0]/2)
-    scores = [ks_2samp(X[:,i][:s], X[:,i][s:],mode="exact")[1] for i in range(X.shape[1])]
-    # returns a score (p-value) for each sensor node
+
+    D_values = [ks_2samp(X[:s, i], X[s:, i], mode="exact")[0] for i in range(X.shape[1])]   # compute KS D statistic for each sensor node
+    scores = [1 - D for D in D_values]
+
     return min(scores)
 
-
-
-# drift localization / explanation methods
-def FeatureImportanceRF(X,y, **params):   # forest with 100 trees
-    return FeatureImportance0(X,y,  RandomForestRegressor(), **params)
-
-def FeatureImportanceET(X,y, **params):
-    return FeatureImportance0(X,y,ExtraTreesRegressor(),**params)
-
-def FeatureImportance0(X,y, model, **params):
-    model = model.fit(X,y)
-    return model, model.feature_importances_
-
-
-def PermutationFeatureImportanceRF(X,y, **params):
-    return PermutationFeatureImportance0(X,y,RandomForestRegressor())
-
-def PermutationFeatureImportanceET(X,y, **params):
-    return PermutationFeatureImportance0(X,y,ExtraTreesRegressor(), **params)
-
-def PermutationFeatureImportance0(X,y, model, **params):
-    X_train, X_test, y_train, y_test = train_test_split(X, y)
-    model = model.fit(X_train,y_train)
-    result = permutation_importance(model, X_test, y_test, n_repeats=10, n_jobs=1)
-    return model, result.importances_mean
 
 
 
 # ----------------------
 # experiment function
 #-----------------------
-def run_experiments_fixed_leak_diameter(leak_nodes, leak_diam_mm, n_repeats, closest_sensor_info, df_baseline, dd_methods, explanation_methods, explanation_params):
+def run_dd_experiments(leak_nodes, leak_diam_mm, n_repeats, closest_sensor_info, df_baseline, dd_methods, dd_params):
     results = []
 
     for leak_node in leak_nodes:
@@ -120,60 +105,129 @@ def run_experiments_fixed_leak_diameter(leak_nodes, leak_diam_mm, n_repeats, clo
 
             # 1. DRIFT DETECTION
             # run drift detection on sliding windows (one check every day, windows of two weeks)
-            drift_timepoints = []
-            for dd_method in dd_methods:
+            for j, dd_method in enumerate(dd_methods):
                 i = 0
                 dd_results = []
                 while i + 2*week_len < data.shape[0]:
                     X = data[i:i+2*week_len, :]
                     dd_result = dd_method(X)
-                    dd_results.append(dd_result)
+                    dd_results.append((dd_result, i + 2* day_len <= split_point < i - 2* day_len + 2*week_len))  # store also if drift is in the window (1 day margin)
                     i += day_len
 
-                drift_timepoint = (np.argmin(dd_results) + 7) * day_len * 15 * 60  # in seconds
+                # compute roc AUC for drift detection results
+                y_true = [1 if r[1] else 0 for r in dd_results]
+                y_scores = [r[0] < dd_params[j] for r in dd_results]
+                auc_score = roc(y_true, y_scores)
+
+                record[f"dd_auc_{dd_method.__name__}"] = auc_score
+
+                drift_timepoint = (np.argmin([r[0] for r in dd_results]) + 7) * day_len * 15 * 60  # in seconds
                                                                                    # add 7 days to center the window on the detection point
-                drift_timepoints.append(drift_timepoint)
 
                 # store results
-                record[f"dd_score_{dd_method.__name__}"] = min(dd_results)
                 record[f"dd_timepoint_{dd_method.__name__}"] = drift_timepoint
+                record[f"dd_score_{dd_method.__name__}"] = min([r[0] for r in dd_results])
 
 
             # optional: visualize results above acertian threshold
-            # if min(dd_results) > 0.35:
-            #     # plot dd results
-            #     plt.figure(figsize=(10,6))
-            #     plt.plot(np.arange(len(dd_results))*day_len/ hour_len, dd_results, marker='o')
-            #     plt.axvline(x=(split_point - week_len) / hour_len, color='r', linestyle='--', label='Leak Start')
-            #     plt.xlabel('Time (hours)')
-            #     plt.ylabel('D3 Drift Score')
-            #     plt.title(f'Drift Detection Results for Leak Node {leak_node}, Leak Diameter {leak_diam_mm} mm')
-            #     plt.legend()
-            #     plt.show()
+            # before running this, the D3 function was changed to return AUC score directly
+            if True:
+                # # plot dd results
+                # plt.figure(figsize=(10,6))
+                # # plt.plot(np.arange(len([r[0] for r in dd_results]))*day_len/ hour_len, [r[0] for r in dd_results], marker='o')   # in hours
+                # plt.plot(np.arange(len([r[0] for r in dd_results])), [1 - r[0] for r in dd_results], label = 'D3 AUC Score')   # in days
+                # # vertical line for the leak start
+                # plt.axvline(x=(split_point - 2 * week_len) / day_len, color='r', linestyle='--', label='Leak Start')
+                # #vertical line for maximum difference in distribution
+                # plt.axvline(x=(split_point - week_len) / day_len, color='b', linestyle='--', label='Maximum separation between the two samples')
+                # # horizontal line for the threshold
+                # plt.axhline(y=1 - dd_params[0], color='g', linestyle='--', label='Drift Detection Threshold')
+                # # highlight week before and after leak
+                # plt.axvspan((split_point - 2 * week_len) / day_len, (split_point) / day_len, color='y', alpha=0.3, label='Time window with drift')
+                # plt.xlabel('Time (days)')
+                # plt.ylim(0.4, 1)
+                # plt.title(f'Drift Detection Results for Leak Node {leak_node}, Leak Diameter {leak_diam_mm} mm')
+                # plt.legend()
+                # plt.show()
 
 
+                # Optional: use Seaborn styling for Matplotlib
+                sns.set_theme(style="whitegrid", context="talk")
 
-            # 2. DRIFT LOCALIZATION / EXPLANATION
-            # retrieve drift time point: choose the closest to the actual leak time
-            dd_timepoint = min(drift_timepoints, key=lambda x: abs(x - record["leak_at"])) // (15 * 60)  # in time steps
+                # Prepare data
+                x_days = np.arange(len(dd_results))
+                y_auc = [1 - r[0] for r in dd_results]
+                threshold = 1 - dd_params[0]
+                
 
-            # train - test split for explanation
-            X = data[dd_timepoint - week_len : dd_timepoint + week_len, :]
-            y = np.array(X.shape[0]//2*[0] + X.shape[0]//2*[1])  # first half is class 0, second half is class 1
-            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
+                plt.figure(figsize=(12, 7))
 
-            for i , explanation_method in enumerate(explanation_methods):
-                # run explanations
-                model, feature_scores = explanation_method(X_train, y_train, **explanation_params[i])
+                # # Plot AUC score
+                # plt.plot(
+                #     x_days, y_auc, 
+                #     color="#1f77b4", linewidth=2.5,
+                #     label="D3 AUC Score"
+                # )
 
-                # ensure correct shape
-                if len(feature_scores.shape) != 1:
-                    print("Deformed feature scores: '%s' %s"%(explanation_method,str(feature_scores.shape)))
-                    feature_scores = feature_scores.ravel()
+                # Base line (below threshold)
+                plt.plot(x_days, y_auc, color='gray', linewidth=2, alpha=0.5, label='D3 AUC Score')
 
-                record[f"feature_scores_{explanation_method.__name__}"] = {col: f"{score:.5f}" for col, score in zip(df.columns, feature_scores)}
-                record[f"explanation_model_score_{explanation_method.__name__}"] = model.score(X_test, y_test)
-                record[f"best_explained_sensor_{explanation_method.__name__}"] = df.columns[np.argmax(feature_scores)]
+                # Overlay the bold section above the threshold
+                plt.plot(np.array(x_days)[np.array(y_auc) > threshold], np.array(y_auc)[np.array(y_auc) > threshold],
+                    color='blue', linewidth=4, label='Above Threshold')
+
+                # Add threshold
+                plt.axhline(
+                    y=1 - dd_params[0], 
+                    color="lightblue", linestyle="--", linewidth=2,
+                    label="Drift Detection Threshold"
+                )
+
+                # Add vertical lines
+                plt.axvline(
+                    x=(split_point - 2 * week_len) / day_len, 
+                    color="blue", linestyle="--", linewidth=2,
+                    label="Leak Start"
+                )
+                plt.axvline(
+                    x=(split_point - week_len) / day_len, 
+                    color="#1f77b4", linestyle=":", linewidth=2,
+                    label="Max Sample Separation"
+                )
+
+                # Highlight drift window
+                plt.axvspan(
+                    (split_point - 2 * week_len) / day_len,
+                    (split_point) / day_len,
+                    color="green", alpha=0.3,
+                    label="Drift Period"
+                )
+
+                # Labels and title
+                plt.xlabel("Time (days)", fontsize=14)
+                plt.ylabel("1 - AUC Score", fontsize=14)
+                plt.title(
+                    f"Drift Detection for Leak Node {leak_node} (Diameter: {leak_diam_mm} mm)", 
+                    fontsize=16, fontweight="bold", pad=20
+                )
+
+                # Legend and grid
+                plt.legend(
+                    fontsize=12, fancybox=True, loc="upper right"
+                )
+                plt.grid(True, which="major", linestyle="--", alpha=0.6)
+
+                # Ticks
+                plt.xticks(fontsize=12)
+                plt.yticks(fontsize=12)
+
+                # fixed y-axis limits
+                plt.ylim(0.4, 1)
+
+                # Optional: tighter layout & export
+                plt.tight_layout()
+                plt.show()
+
 
             # append record to results
             results.append(record)
@@ -185,7 +239,6 @@ def run_experiments_fixed_leak_diameter(leak_nodes, leak_diam_mm, n_repeats, clo
 
 
 
-#%%
 # -------------------
 # Setup experiment
 #--------------------
@@ -246,41 +299,49 @@ leak_nodes = ['n3','n4','n5','n6','n10','n11','n14','n15','n17','n18','n22','n23
  'n742','n744','n747','n749','n751','n753','n755','n757','n760','n763','n765','n767',
  'n769','n772','n779','n781','n782']
 
+leak_nodes = ['n44', 'n603']
 
-#-------------------------------------------
-# run experiments for a fixed leakage size
-# ------------------------------------------
 
-for leak_diam_mm in [7, 11, 15]:
+
+dd_methods = [d3]   # drift detection methods to evaluate
+# dd_methods = [d3, knn_d3_20, knn_d3_50, knn_d3_100]   # drift detection methods to evaluate
+
+
+# parameters for drift detection methods
+# d3 --> 0.4
+# ks --> 0.825
+
+
+# run experiments
+
+# Define the leak sizes you want to test
+leak_diameters = [7, 11, 15]
+
+# List to store results for each leak size
+all_results = []
+
+for leak_diam_mm in leak_diameters:
+    print(f"Running experiments for leak diameter = {leak_diam_mm} mm...")
     
-    results_df = run_experiments_fixed_leak_diameter(
-        leak_nodes=leak_nodes,
-        leak_diam_mm=leak_diam_mm,
-        n_repeats=n_repeats,
-        closest_sensor_info=closest_sensor_info,
-        df_baseline=df_baseline,
-        dd_methods=[d3, knn_d3, ks],
-        explanation_methods=[FeatureImportanceRF, FeatureImportanceET, PermutationFeatureImportanceRF, PermutationFeatureImportanceET],
-        explanation_params=[{}, {}, {}, {}]
+    # Run your existing experiment
+    results_df = run_dd_experiments(
+        leak_nodes,
+        leak_diam_mm,
+        n_repeats,
+        closest_sensor_info,
+        df_baseline,
+        dd_methods,
+        dd_params=[0.4]  # example thresholds for d3, knn_d3, ks
     )
+    
+    all_results.append(results_df)
 
-    # save to csv
-    results_df.to_csv(f'experiment_results_leak_{leak_diam_mm}mm.csv', index=False)
+# Concatenate all results into one DataFrame
+results_all = pd.concat(all_results, ignore_index=True)
 
+# save results to CSV
+save_results = False
+if save_results:
+    results_all.to_csv("dd_experiment_results.csv", index=False)
 
-
-plots = False
-if plots:
-    # compute distances in time
-    distances = np.abs((results_df['leak_at'] - results_df['dd_timepoint']))  # in seconds
-
-    #plot distances against index
-    import matplotlib.pyplot as plt
-    plt.figure(figsize=(10,6))
-    plt.plot(distances / 3600, marker='o', linestyle='', alpha=0.5)
-    plt.xlabel('Experiment Index')
-    plt.ylabel('Detection Delay (hours)')
-    plt.title(f'Drift Detection Delay for Leak Diameter {leak_diam_mm} mm')
-    plt.ylim(0, 100)   # limit y-axis to 100 hours
-    plt.grid()
-    plt.show()
+# %%
