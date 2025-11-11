@@ -5,14 +5,14 @@ import networkx as nx
 import json
 
 # Load shapefiles
-nodes = gpd.read_file("..\dataset generator\_shapefiles_\L-TOWN_Real_junctions.shp")
-pipes = gpd.read_file("..\dataset generator\_shapefiles_\L-TOWN_Real_pipes.shp")
+nodes = gpd.read_file("..\\_shapefiles_\\L-TOWN_Real_junctions.shp")
+pipes = gpd.read_file("..\\_shapefiles_\\L-TOWN_Real_pipes.shp")
 
 # read csv for direction instructions
 directions = pd.read_csv('flow_directions.csv')
 # rename pipe column
 directions = directions.rename(columns={'Unnamed: 0': 'pipe_id'})
-# remove last four rows
+# remove last four rows: pump and valves
 directions = directions[:-4]
 
 # override nodeto and nodefrom in pipes according to directions
@@ -31,7 +31,7 @@ sensors = ['n1', 'n4', 'n31', 'n54', 'n105', 'n114', 'n163', 'n188',
             'n726', 'n740', 'n752', 'n769']
 
 # Compute distances and paths
-lengths, paths = nx.multi_source_dijkstra(G, sources=sensors, weight="weight")   # lengths and paths are dicts
+lengths, paths = nx.multi_source_dijkstra(G.reverse(), sources=sensors, weight="weight")   # lengths and paths are dicts
 
 # Prepare results
 closest_sensors = {}
@@ -44,6 +44,23 @@ for node in G.nodes():
         distances[node] = float('inf')
         closest_sensors[node] = None
 
+
+# count NAs in closest_sensors
+na_count = sum(1 for sensor in closest_sensors.values() if sensor is None)
+na_nodes = [node for node, sensor in closest_sensors.items() if sensor is None]
+
+# load top2_shortest_paths_to_sensors json
+with open("top2_shortest_paths_to_sensors.json", "r") as f:
+    top2_data = json.load(f)
+
+# check if top2 has nas
+top2_na_count = sum(1 for node in na_nodes if top2_data[node]["closest_sensors"] is None)   # = 0
+
+# fill nas with top2 info
+for node in na_nodes:
+    closest_sensors[node] = top2_data[node]["closest_sensors"][0]
+    distances[node] = top2_data[node]["distances"][0]
+
 combined_results = {
     node: {
         "closest_sensor": closest_sensors[node],
@@ -52,12 +69,14 @@ combined_results = {
     for node in G.nodes()
 }
 
-# Save results to JSON
-with open("shortest_paths_to_sensors - directed_graph.json", "w") as f:
+# save combined results to json
+with open("closest_downstream_sensors.json", "w") as f:
     json.dump(combined_results, f, indent=4)
 
 
+
 # add information to node shapefiles
-# nodes["closest_sensor"] = nodes["id"].map(closest_sensors)
-# nodes["distance_to_sensor"] = nodes["id"].map(distances)
-# nodes.to_file("L-TOWN_Real_junctions_with_sensor_info.shp")
+nodes["downstream_sensor"] = nodes["id"].map(closest_sensors)
+nodes["distance_to_sensor"] = nodes["id"].map(distances)
+# save updated shapefile
+nodes.to_file("L-TOWN_Real_junctions_with_flow.shp")

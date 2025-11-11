@@ -24,7 +24,12 @@ env/
 # ignore shapefiles, datasets folders and inp files
 */_shapefiles_/
 */Datasets/
+*/results images/
 
 *.inp
 *.bin
 *.rpt
+
+# ignore csv and json
+*.csv
+*.json

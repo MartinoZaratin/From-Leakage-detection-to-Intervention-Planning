@@ -61,7 +61,7 @@ def generate_leakage_data(inp_file, leak_node, leak_diam_mm, duration_days, repo
     # -----------------------------
     # 6. Save results to CSV
     # -----------------------------
-    output_csv = f'Datasets\Leakages {leak_diam_mm}mm\leakage_{leak_node}_{leak_diam_mm}.csv'
+    output_csv = f'Datasets\\Leakages {leak_diam_mm}mm\\leakage_{leak_node}_{leak_diam_mm}.csv'
     sensor_pressures.to_csv(output_csv)
     sensor_pressures.index.name = 'Time (s)'
     print(f"Saved synthetic pressure data to {output_csv}")
@@ -82,7 +82,7 @@ duration_days = 90
 report_step_min = 15  # in minutes
 
 # leak parameters
-leak_diam_mm = 7  # leak diameter in mm
+leak_diam_mm = 19  # leak diameter in mm
 
 # 389 leak nodes
 leak_nodes = ['n3','n4','n5','n6','n10','n11','n14','n15','n17','n18','n22','n23',

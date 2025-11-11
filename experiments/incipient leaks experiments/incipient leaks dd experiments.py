@@ -8,17 +8,13 @@ from sklearn.metrics.pairwise import pairwise_kernels as apply_kernel
 from sklearn.model_selection import StratifiedKFold
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression 
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import ExtraTreesClassifier, RandomForestClassifier
 from sklearn.metrics import roc_auc_score as roc
 from scipy.stats import ks_2samp
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.model_selection import KFold
-from sklearn.ensemble import RandomForestRegressor, ExtraTreesRegressor
 from sklearn.inspection import permutation_importance
 
 import matplotlib.pyplot as plt
-import seaborn as sns
+# import seaborn as sns
 
 from tqdm import tqdm
 import json
@@ -75,33 +71,67 @@ def ks(X, s=None):
 
 
 # ----------------------
-# experiment function
+#   EXPERIMENT FUNCTIONS
 #-----------------------
+def generate_incipient_leak(baseline_df, leak_df, step_start, step_full):
+    """
+    Generate an incipient leak scenario by linearly blending between baseline and full-leak data.
+
+    baseline_df, leak_df: DataFrames with identical index (timesteps) and same columns (nodes).
+    step_start: timestep index when leak begins.
+    step_full: timestep index when leak reaches full size.
+    """
+    df = baseline_df.copy()
+    # trim to the length of leak_df
+    df = df[:len(leak_df)]
+    n_steps = len(leak_df)
+    weights = np.zeros(n_steps, dtype=float)
+
+    for i in range(n_steps):
+        if i < step_start:
+            weights[i] = 0
+        elif step_start <= i <= step_full:
+            weights[i] = (i - step_start) / (step_full - step_start)
+        else:
+            weights[i] = 1
+
+    # Apply blending across all nodes
+    df[:] = df * (1 - weights[:, None]) + leak_df * weights[:, None]
+    return df
+
+
 def run_dd_experiments(leak_nodes, leak_diam_mm, n_repeats, closest_sensor_info, df_baseline, dd_methods, dd_params):
     results = []
 
     for leak_node in leak_nodes:
         # read file with leakage data
-        df = pd.read_csv(f'..\\dataset generator\\Datasets\\Leakages {leak_diam_mm}mm\\leakage_{leak_node}_{leak_diam_mm}.csv')
+        df = pd.read_csv(f'..\\..\\dataset generator\\Datasets\\Leakages {leak_diam_mm}mm\\leakage_{leak_node}_{leak_diam_mm}.csv')
         # remove timestamp column
         df = df.drop(columns=['Unnamed: 0'])
 
-        # generate n_repeats random split points for the experiment repetitions
+        # generate n_repeats random duration of incipiency for the leak between 7 and 45 days
+        incipiency_durations = [random.randint(7, 45) for _ in range(n_repeats)]
+        
         n_timesteps = df.shape[0]
-        split_points = random.sample(range(week_len, n_timesteps - week_len), k=n_repeats)
+        for id, incipiency_duration in enumerate(incipiency_durations):
+            # generate random t_start in the possible range
+            max_start = n_timesteps - incipiency_duration * day_len - week_len
+            t_start = random.randint(week_len, max_start)
+            t_full = t_start + incipiency_duration * day_len
 
-        # iterate over repetitions
-        for split_idx, split_point in enumerate(split_points):
-            print(f"Running experiment for leak node {leak_node}, repetition {split_idx+1}/{n_repeats}...")
+            # generate incipient leak data
+            data = generate_incipient_leak(df_baseline.values, df.values, t_start, t_full)
+
+            
+            print(f"Running experiment for leak node {leak_node}, repetition {id+1}/{n_repeats}...")
 
             # initialize record
             record = {"leak_node": leak_node,
                     "leak_diam_mm": leak_diam_mm,
-                    "leak_at": split_point * 15 * 60,     # in seconds
+                    "leak_start_at": t_start * 15 * 60,     # in seconds
+                    "full_leak_at": t_full * 15 * 60, # in seconds
+                    "incipiency_duration_days": incipiency_duration,
                     "closest_sensor": closest_sensor_info[leak_node]["closest_sensors"][0]}
-
-            # concatenate baseline and leak data at split point as numpy array
-            data = pd.concat([df_baseline.iloc[:split_point], df.iloc[split_point:]], axis=0).reset_index(drop=True).to_numpy()
 
             # 1. DRIFT DETECTION
             # run drift detection on sliding windows (one check every day, windows of two weeks)
@@ -111,7 +141,8 @@ def run_dd_experiments(leak_nodes, leak_diam_mm, n_repeats, closest_sensor_info,
                 while i + 2*week_len < data.shape[0]:
                     X = data[i:i+2*week_len, :]
                     dd_result = dd_method(X)
-                    dd_results.append((dd_result, i + 2* day_len <= split_point < i - 2* day_len + 2*week_len))  # store also if drift is in the window (1 day margin)
+                    dd_results.append((dd_result, (i + 2* week_len - incipiency_duration // 2 * day_len >= t_start) and (i + week_len <= t_full)))  # store also if drift is in the window
+                                                                                                                              # half duration margin before, 1 week margin after
                     i += day_len
 
                 # compute roc AUC for drift detection results
@@ -133,9 +164,9 @@ def run_dd_experiments(leak_nodes, leak_diam_mm, n_repeats, closest_sensor_info,
             plots = False
             if plots:
                 # use Seaborn styling for Matplotlib
-                sns.set_theme(style="whitegrid", context="talk")
+                # sns.set_theme(style="whitegrid", context="talk")
 
-                x_days = np.arange(len(dd_results))
+                x_days = np.arange(7, len(dd_results)+7)
                 y_auc = [1 - r[0] for r in dd_results]
                 threshold = 1 - dd_params[0]
             
@@ -148,10 +179,12 @@ def run_dd_experiments(leak_nodes, leak_diam_mm, n_repeats, closest_sensor_info,
                 # Add threshold
                 plt.axhline(y=1 - dd_params[0], color="navy", linestyle="--", linewidth=2, label="Drift detection threshold")
                 # Add vertical lines
-                plt.axvline(x=(split_point - 2 * week_len) / day_len, color="green", linestyle="--", linewidth=2, label="Leak start")
-                plt.axvline(x=(split_point - week_len) / day_len, color="black", linestyle=":", linewidth=2, label="Peak samples dissimilarity")
-                # Highlight drift window
-                plt.axvspan((split_point - 2 * week_len) / day_len, (split_point) / day_len, color="green", alpha=0.1, label="Time window with drift")
+                plt.axvline(x=(t_start) / day_len, color="green", linestyle="--", linewidth=2, label="Leak start")
+                plt.axvline(x=(t_full) / day_len, color="green", linestyle="--", linewidth=2, label="Leak full size")
+
+                # plt.axvline(x=(split_point - week_len) / day_len, color="black", linestyle=":", linewidth=2, label="Peak samples dissimilarity")
+                # # Highlight drift window
+                # plt.axvspan((split_point - 2 * week_len) / day_len, (split_point) / day_len, color="green", alpha=0.1, label="Time window with drift")
                 # Labels and title
                 plt.xlabel("Time (days)", fontsize=14)
                 plt.ylabel("AUC score", fontsize=14)
@@ -192,11 +225,11 @@ week_len = 7*day_len
 month_len = 4*week_len
 
 # read json file with sensor proximity information
-with open("top2_shortest_paths_to_sensors.json", "r") as f:
+with open("..\\top2_shortest_paths_to_sensors.json", "r") as f:
     closest_sensor_info = json.load(f)
 
 # read baseline file
-df_baseline = pd.read_csv('Baseline.csv')
+df_baseline = pd.read_csv('..\\Baseline.csv')
 # remove timestamp column
 df_baseline = df_baseline.drop(columns=['Unnamed: 0'])
 
@@ -248,7 +281,7 @@ dd_methods = [d3, ks]   # drift detection methods to evaluate
 # run experiments
 
 # Define the leak sizes
-leak_diameters = [19]
+leak_diameters = [7, 11, 15, 19]
 
 # List to store results for each leak size
 all_results = []
@@ -267,6 +300,9 @@ for leak_diam_mm in leak_diameters:
         dd_params=[0.4, 0.825]  # example thresholds for d3, knn_d3, ks
     )
     
+    # save results for this leak size
+    results_df.to_csv(f"dd_incipient_leaks_experiment_results_{leak_diam_mm}mm.csv", index=False)
+
     all_results.append(results_df)
 
 # Concatenate all results into one DataFrame
@@ -275,9 +311,6 @@ results_all = pd.concat(all_results, ignore_index=True)
 # save results to CSV
 save_results = False
 if save_results:
-    results_all.to_csv("dd_experiment_results.csv", index=False)
-
-# save 19 mm results
-# results_all.to_csv("dd_experiment_results_19mm.csv", index=False)
+    results_all.to_csv("dd_incipient_leaks_experiment_results.csv", index=False)
 
 # %%

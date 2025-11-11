@@ -1,3 +1,4 @@
+#%%
 # --------------------
 # Load libraries
 # --------------------
@@ -18,66 +19,43 @@ from sklearn.ensemble import RandomForestRegressor, ExtraTreesRegressor
 from sklearn.inspection import permutation_importance
 
 import matplotlib.pyplot as plt
-import seaborn as sns
 
 from tqdm import tqdm
 import json
 import random
 import time
 
+#%%
+# drift localization / explanation methods
+def FeatureImportanceRF(X,y, **params):   # forest with 100 trees
+    return FeatureImportance0(X,y,  RandomForestRegressor(), **params)
 
+def FeatureImportanceET(X,y, **params):
+    return FeatureImportance0(X,y,ExtraTreesRegressor(),**params)
+
+def FeatureImportance0(X,y, model, **params):
+    model = model.fit(X,y)
+    return model, model.feature_importances_
+
+
+def PermutationFeatureImportanceRF(X,y, **params):
+    return PermutationFeatureImportance0(X,y,RandomForestRegressor())
+
+def PermutationFeatureImportanceET(X,y, **params):
+    return PermutationFeatureImportance0(X,y,ExtraTreesRegressor(), **params)
+
+def PermutationFeatureImportance0(X,y, model, **params):
+    X_train, X_test, y_train, y_test = train_test_split(X, y)
+    model = model.fit(X_train,y_train)
+    result = permutation_importance(model, X_test, y_test, n_repeats=10, n_jobs=1)
+    return model, result.importances_mean
 
 #%%
-# -------------------
-# define drift detection methods
-#-------------------
-# drift detection methods
-def d3(X,clf = LogisticRegression(solver='liblinear')):
-    y = np.ones(X.shape[0])
-    y[:int(X.shape[0]/2)] = 0   # set the fist window to class 0, the second one to class 1
-    
-    predictions = np.zeros(y.shape)
-    
-    skf = StratifiedKFold(n_splits=2, shuffle=True)
-    for train_idx, test_idx in skf.split(X, y):
-        X_train, X_test = X[train_idx], X[test_idx]
-        y_train, y_test = y[train_idx], y[test_idx]
-        clf.fit(X_train, y_train)
-        probs = clf.predict_proba(X_test)[:, 1]
-        predictions[test_idx] = probs   # at each fold, a subset of predictions is filled in
-    auc_score = roc(y, predictions)   # if AUC is > 0.5, then there is drift!
-    
-    return 1 - auc_score
-
-def knn_d3(X, n_neighbors=200):
-    return d3(X, clf=KNeighborsClassifier(n_neighbors=n_neighbors))
-
-# def knn_d3_20(X):
-#     return knn_d3(X, n_neighbors=20)
-
-# def knn_d3_50(X):
-#     return knn_d3(X, n_neighbors=50)
-
-# def knn_d3_100(X):
-#     return knn_d3(X, n_neighbors=100)
-
-
-def ks(X, s=None):
-    if s is None:
-        s = int(X.shape[0]/2)
-
-    D_values = [ks_2samp(X[:s, i], X[s:, i], mode="exact")[0] for i in range(X.shape[1])]   # compute KS D statistic for each sensor node
-    scores = [1 - D for D in D_values]
-
-    return min(scores)
-
-
-
 
 # ----------------------
 # experiment function
 #-----------------------
-def run_dd_experiments(leak_nodes, leak_diam_mm, n_repeats, closest_sensor_info, df_baseline, dd_methods, dd_params):
+def run_explanation_experiments(leak_nodes, leak_diam_mm, n_repeats, closest_sensor_info, df_baseline, explanation_methods, explanation_params):
     results = []
 
     for leak_node in leak_nodes:
@@ -97,76 +75,43 @@ def run_dd_experiments(leak_nodes, leak_diam_mm, n_repeats, closest_sensor_info,
             # initialize record
             record = {"leak_node": leak_node,
                     "leak_diam_mm": leak_diam_mm,
-                    "leak_at": split_point * 15 * 60,     # in seconds
+                    "leak_at (s)": split_point * 15 * 60,     # in seconds
                     "closest_sensor": closest_sensor_info[leak_node]["closest_sensors"][0]}
+            
+            # create detection timepoint by adding displaccement to split point
+            # displacement is randomly samples in the range [-24h, +24h]
+            displacement = random.randint(-96, 96)  # in time steps (15 min each)
+            record["detection_timepoint (s)"] = (split_point + displacement) * 15 * 60  # in seconds
+            detection_timepoint = split_point + displacement
 
             # concatenate baseline and leak data at split point as numpy array
-            data = pd.concat([df_baseline.iloc[:split_point], df.iloc[split_point:]], axis=0).reset_index(drop=True).to_numpy()
-
-            # 1. DRIFT DETECTION
-            # run drift detection on sliding windows (one check every day, windows of two weeks)
-            for j, dd_method in enumerate(dd_methods):
-                i = 0
-                dd_results = []
-                while i + 2*week_len < data.shape[0]:
-                    X = data[i:i+2*week_len, :]
-                    dd_result = dd_method(X)
-                    dd_results.append((dd_result, i + 2* day_len <= split_point < i - 2* day_len + 2*week_len))  # store also if drift is in the window (1 day margin)
-                    i += day_len
-
-                # compute roc AUC for drift detection results
-                y_true = [1 if r[1] else 0 for r in dd_results]
-                y_scores = [r[0] < dd_params[j] for r in dd_results]
-                auc_score = roc(y_true, y_scores)
-
-                record[f"dd_auc_{dd_method.__name__}"] = auc_score
-
-                drift_timepoint = (np.argmin([r[0] for r in dd_results]) + 7) * day_len * 15 * 60  # in seconds
-                                                                                   # add 7 days to center the window on the detection point
-
-                # store results
-                record[f"dd_timepoint_{dd_method.__name__}"] = drift_timepoint
-                record[f"dd_score_{dd_method.__name__}"] = min([r[0] for r in dd_results])
+            data = pd.concat([df_baseline.iloc[:detection_timepoint], df.iloc[detection_timepoint:]], axis=0).reset_index(drop=True).to_numpy()
 
 
-            # optional: visualize results
-            plots = False
-            if plots:
-                # use Seaborn styling for Matplotlib
-                sns.set_theme(style="whitegrid", context="talk")
+            # DRIFT LOCALIZATION / EXPLANATION
 
-                x_days = np.arange(len(dd_results))
-                y_auc = [1 - r[0] for r in dd_results]
-                threshold = 1 - dd_params[0]
-            
-                plt.figure(figsize=(12, 7))
-                # Base line (below threshold)
-                plt.plot(x_days, y_auc, color='dimgray', linewidth=2, alpha=0.5, label='D3 AUC score')
-                # Overlay the bold section above the threshold
-                plt.plot(np.array(x_days)[np.array(y_auc) > threshold], np.array(y_auc)[np.array(y_auc) > threshold],
-                    color='navy', linewidth=4, label='Flag drift')
-                # Add threshold
-                plt.axhline(y=1 - dd_params[0], color="navy", linestyle="--", linewidth=2, label="Drift detection threshold")
-                # Add vertical lines
-                plt.axvline(x=(split_point - 2 * week_len) / day_len, color="green", linestyle="--", linewidth=2, label="Leak start")
-                plt.axvline(x=(split_point - week_len) / day_len, color="black", linestyle=":", linewidth=2, label="Peak samples dissimilarity")
-                # Highlight drift window
-                plt.axvspan((split_point - 2 * week_len) / day_len, (split_point) / day_len, color="green", alpha=0.1, label="Time window with drift")
-                # Labels and title
-                plt.xlabel("Time (days)", fontsize=14)
-                plt.ylabel("AUC score", fontsize=14)
-                # Legend and grid
-                plt.legend(fontsize=12, fancybox=True, loc="upper right")
-                plt.grid(True, which="major", linestyle="--", alpha=0.6)
-                plt.xticks(fontsize=12)
-                plt.yticks(fontsize=12)
-                plt.ylim(0.4, 1)
-                plt.tight_layout()
-                save_figs = False
-                if save_figs:
-                    plt.savefig(f"drift_detection_leak_{leak_node}_diam_{leak_diam_mm}.png", dpi=300)
-                plt.show()
+            # train - test split for explanation
+            # adjust window if displacement causes out-of-bounds
+            if detection_timepoint - week_len < 0:
+                detection_timepoint = week_len
+            if detection_timepoint + week_len > data.shape[0]:
+                detection_timepoint = data.shape[0] - week_len
+            X = data[detection_timepoint - week_len : detection_timepoint + week_len, :]
+            y = np.array(X.shape[0]//2*[0] + X.shape[0]//2*[1])  # first half is class 0, second half is class 1
+            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
 
+            for i , explanation_method in enumerate(explanation_methods):
+                # run explanations
+                model, feature_scores = explanation_method(X_train, y_train, **explanation_params[i])
+
+                # ensure correct shape
+                if len(feature_scores.shape) != 1:
+                    print("Deformed feature scores: '%s' %s"%(explanation_method,str(feature_scores.shape)))
+                    feature_scores = feature_scores.ravel()
+
+                record[f"feature_scores_{explanation_method.__name__}"] = {col: f"{score:.5f}" for col, score in zip(df.columns, feature_scores)}
+                record[f"explanation_model_score_{explanation_method.__name__}"] = model.score(X_test, y_test)
+                record[f"best_explained_sensor_{explanation_method.__name__}"] = df.columns[np.argmax(feature_scores)]
 
             # append record to results
             results.append(record)
@@ -175,9 +120,7 @@ def run_dd_experiments(leak_nodes, leak_diam_mm, n_repeats, closest_sensor_info,
 
     return results_df
 
-
-
-
+#%%
 # -------------------
 # Setup experiment
 #--------------------
@@ -239,16 +182,17 @@ leak_nodes = ['n3','n4','n5','n6','n10','n11','n14','n15','n17','n18','n22','n23
  'n769','n772','n779','n781','n782']
 
 
-dd_methods = [d3, ks]   # drift detection methods to evaluate
-
-# parameters for drift detection methods
-# d3 --> 0.4
-# ks --> 0.825
-
-# run experiments
+#%%
+#---------------------
+# Run experiments
+#--------------------
 
 # Define the leak sizes
-leak_diameters = [19]
+leak_diameters = [7, 11, 15]
+
+# define explanations
+explanation_methods = [FeatureImportanceRF, FeatureImportanceET,
+                       PermutationFeatureImportanceRF, PermutationFeatureImportanceET]
 
 # List to store results for each leak size
 all_results = []
@@ -257,27 +201,25 @@ for leak_diam_mm in leak_diameters:
     print(f"Running experiments for leak diameter = {leak_diam_mm} mm...")
     
     # Run your existing experiment
-    results_df = run_dd_experiments(
+    results_df = run_explanation_experiments(
         leak_nodes,
         leak_diam_mm,
         n_repeats,
         closest_sensor_info,
         df_baseline,
-        dd_methods,
-        dd_params=[0.4, 0.825]  # example thresholds for d3, knn_d3, ks
+        explanation_methods,
+        explanation_params=[{}, {}, {}, {}]
     )
     
     all_results.append(results_df)
 
-# Concatenate all results into one DataFrame
-results_all = pd.concat(all_results, ignore_index=True)
+    # save intermediate results to CSV
+    results_df.to_csv(f"explanation_experiments_results_{leak_diam_mm}mm.csv", index=False)
 
-# save results to CSV
-save_results = False
-if save_results:
-    results_all.to_csv("dd_experiment_results.csv", index=False)
+# # Concatenate all results into one DataFrame
+# results_all = pd.concat(all_results, ignore_index=True)
 
-# save 19 mm results
-# results_all.to_csv("dd_experiment_results_19mm.csv", index=False)
-
-# %%
+# # save results to CSV
+# save_results = False
+# if save_results:
+#     results_all.to_csv("explanation_experiments_results.csv", index=False)

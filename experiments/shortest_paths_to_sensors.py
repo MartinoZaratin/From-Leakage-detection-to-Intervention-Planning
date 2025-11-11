@@ -7,6 +7,8 @@ import json
 nodes = gpd.read_file("..\dataset generator\_shapefiles_\L-TOWN_Real_junctions.shp")
 pipes = gpd.read_file("..\dataset generator\_shapefiles_\L-TOWN_Real_pipes.shp")
 
+# not completely right: missing pump and valves connections
+
 # Build graph
 G = nx.Graph()
 for _, row in pipes.iterrows():

@@ -19,32 +19,35 @@ def ks(X):
 
 # load csv results
 results = pd.read_csv("dd_experiment_results.csv")
+results_19mm = pd.read_csv("dd_experiment_results_19mm.csv")
+results = pd.concat([results, results_19mm], ignore_index=True)
+
 dd_methods = [d3, ks]
 
-
-
+dd_names = ['D3', 'KS']
+colors = ['darkorange', 'teal']
 plt.figure(figsize=(10, 6))
 
-for dd_method in dd_methods:
+for id, dd_method in enumerate(dd_methods):
     # Group results by leak size and compute mean/std AUC
     grouped = results.groupby("leak_diam_mm")[f"dd_auc_{dd_method.__name__}"]
     mean_auc = grouped.mean()
     std_auc = grouped.std()
 
     # Plot with shaded standard deviation
-    plt.plot(mean_auc.index, mean_auc.values, marker='o', label=dd_method.__name__)
+    plt.plot(mean_auc.index, mean_auc.values, marker='o', label=dd_names[id], color=colors[id])
     plt.fill_between(mean_auc.index,
                      mean_auc.values - std_auc.values,
                      mean_auc.values + std_auc.values,
-                     alpha=0.2)
+                     alpha=0.2, color =colors[id])
 
 
 plt.xlabel("Leak Diameter (mm)", fontsize=12)
 plt.ylabel("AUC Score", fontsize=12)
 # plt.title("Drift Detection AUC Scores vs Leak Diameter", fontsize=12)
 plt.legend(loc="lower right", fontsize=12)
-plt.ylim(0, 1)
-plt.grid(True)
+plt.ylim(0.4, 1)
+plt.grid(True, linestyle='--', alpha=0.7)
 
 # Save high-res image
 plt.savefig("plot.png", dpi=300, bbox_inches='tight')
@@ -60,6 +63,9 @@ plt.show()
 ###############################################
 # load results
 results = pd.read_csv("dd_experiment_results.csv")
+results_19mm = pd.read_csv("dd_experiment_results_19mm.csv")
+results = pd.concat([results, results_19mm], ignore_index=True)
+
 # load pipes, nodes shape files
 pipes = gpd.read_file("..\\_shapefiles_\\L-TOWN_Real_pipes.shp")
 nodes = gpd.read_file("..\\_shapefiles_\\L-TOWN_Real_junctions.shp")
@@ -75,7 +81,7 @@ nodes = pd.concat([nodes, pd.DataFrame(reservoirs)], ignore_index=True)
 
 
 # map dd_auc_d3 column to nodes according to leak_node column. If no leak at node, set to NaN
-for leak_diam_mm in [7, 11, 15]:
+for leak_diam_mm in [7, 11, 15, 19]:
     nodes[f"dd_auc_d3_leak_{leak_diam_mm}"] = np.nan
     pipes[f"dd_auc_d3_leak_{leak_diam_mm}"] = np.nan   # initialize column in pipes as well
     for _, row in results[results["leak_diam_mm"] == leak_diam_mm].iterrows():
@@ -90,7 +96,7 @@ from collections import deque
 
 def propagate_nodes_to_pipes(pipes: pd.DataFrame, nodes: pd.DataFrame,
                              leak_field_template="dd_auc_d3_leak_{}",
-                             leak_diams=(7,11,15)):
+                             leak_diams=(7,11,15,19)):
     """
     Mutates pipes and nodes DataFrames in-place: fills NaNs in the leak fields
     propagating values from selected nodes through the network.
