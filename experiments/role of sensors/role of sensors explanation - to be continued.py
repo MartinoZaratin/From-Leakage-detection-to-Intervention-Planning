@@ -188,7 +188,7 @@ leak_nodes = ['n3','n4','n5','n6','n10','n11','n14','n15','n17','n18','n22','n23
 #--------------------
 
 # Define the leak sizes
-leak_diameters = [19]
+leak_diameters = [7, 11, 15]
 
 # define explanations
 explanation_methods = [FeatureImportanceRF, FeatureImportanceET,

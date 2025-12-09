@@ -18,61 +18,72 @@ def ks(X):
     pass
 
 # load csv results
-results = pd.read_csv("dd_experiment_results.csv")
-results_19mm = pd.read_csv("dd_experiment_results_19mm.csv")
-results = pd.concat([results, results_19mm], ignore_index=True)
+# results = pd.read_csv("dd_ros_25_sensors_results.csv")
+results_9_sensors = pd.read_csv("dd_ros_9_sensors_results.csv")
+results_17_sensors = pd.read_csv("dd_ros_17_sensors_results.csv")
+results_25_sensors = pd.read_csv("dd_ros_25_sensors_results.csv")
+results_33_sensors = pd.read_csv("dd_experiment_results.csv")
+results_33_sensors_19mm = pd.read_csv("dd_experiment_results_19mm.csv")
+results_33_sensors = pd.concat([results_33_sensors, results_33_sensors_19mm], ignore_index=True)
 
-dd_methods = [d3, ks]
+dd_methods = [d3]
 
-dd_names = ['D3', 'KS']
-colors = ['darkorange', 'teal']
+dd_names = ['D3']
+colors = ['darkorange']
 
-line_alphas = [1, 0.5]   # custom transparency per line
-fill_alpha = 0.25          # fixed transparency for all shaded areas
 
+# plot number of sensors vs mean auc score. One line per leak size. Shaded stddev
+leak_sizes = [7, 11, 15, 19]
+for leak_size in leak_sizes:
+    mean_aucs = []
+    std_aucs = []
+    for results in [results_9_sensors, results_17_sensors, results_25_sensors, results_33_sensors]:
+        mean_auc = results[results["leak_diam_mm"] == leak_size][f"dd_auc_d3"].mean()
+        std_auc = results[results["leak_diam_mm"] == leak_size][f"dd_auc_d3"].std()
+        mean_aucs.append(mean_auc)
+        std_aucs.append(std_auc)
+    
+    plt.figure(figsize=(10, 6))
+    plt.plot([9, 17, 25, 33], mean_aucs, marker='o', label='D3', color='darkorange')
+    plt.fill_between([9, 17, 25, 33],
+                     np.array(mean_aucs) - np.array(std_aucs),
+                     np.array(mean_aucs) + np.array(std_aucs),
+                     color = 'darkorange', alpha=0.2)
+    plt.xlabel("Number of Sensors", fontsize=27)
+    plt.ylabel("AUC Score", fontsize=27)
+    plt.legend(loc="lower right", fontsize=27)
+    plt.xticks([9, 17, 25, 33], fontsize=22)
+    plt.yticks(fontsize=22)
+    plt.ylim(0.4, 1)
+    plt.grid(True, linestyle='--', alpha=0.7)
+    plt.savefig(f"dd_auc_vs_sensors_leak_{leak_size}mm.png", dpi=200, bbox_inches='tight')
+    plt.show()
+
+    
+#%%
+results_without_closest = pd.read_csv("dd_ros_without_closest_sensors_results.csv")
+# plot leak size vs mean auc score for results without closest sensors
+leak_sizes = [7, 11, 15, 19]
+mean_aucs = []
+std_aucs = []
+for leak_size in leak_sizes:
+    mean_auc = results_without_closest[results_without_closest["leak_diam_mm"] == leak_size][f"dd_auc_d3"].mean()
+    std_auc = results_without_closest[results_without_closest["leak_diam_mm"] == leak_size][f"dd_auc_d3"].std()
+    mean_aucs.append(mean_auc)
+    std_aucs.append(std_auc)
 plt.figure(figsize=(10, 6))
-
-for idx, dd_method in enumerate(dd_methods):
-    grouped = results.groupby("leak_diam_mm")[f"dd_auc_{dd_method.__name__}"]
-    mean_auc = grouped.mean()
-    std_auc = grouped.std()
-
-    # Line with custom transparency
-    plt.plot(
-        mean_auc.index,
-        mean_auc.values,
-        marker='o',
-        label=dd_names[idx],
-        color=colors[idx],
-        alpha=line_alphas[idx]
-    )
-
-    # Shaded band with fixed transparency
-    plt.fill_between(
-        mean_auc.index,
-        mean_auc.values - std_auc.values,
-        mean_auc.values + std_auc.values,
-        color=colors[idx],
-        alpha=fill_alpha
-    )
-
-
-plt.xlabel("Leak Diameter (mm)", fontsize=20)
-plt.ylabel("AUC Score", fontsize=20)
-# plt.title("Drift Detection AUC Scores vs Leak Diameter", fontsize=12)
-# make x adn y numbers larger and use selected values for x ticks
-plt.xticks(ticks=[7, 11, 15, 19], fontsize=16)
-plt.yticks(fontsize=16)
-plt.legend(loc="lower right", fontsize=20)
+plt.plot(leak_sizes, mean_aucs, marker='o', label='Mean D3 AUC Score', color='darkorange')
+plt.fill_between(leak_sizes,
+                 np.array(mean_aucs) - np.array(std_aucs),
+                 np.array(mean_aucs) + np.array(std_aucs),
+                 color = 'darkorange', alpha=0.2)
+plt.xlabel("Leak Size (mm)", fontsize=12)
+plt.ylabel("AUC Score", fontsize=12)
+plt.legend(loc="lower right", fontsize=12)
 plt.ylim(0.4, 1)
 plt.grid(True, linestyle='--', alpha=0.7)
-
-# Save high-res image
-plt.savefig("plot.png", dpi=300, bbox_inches='tight')
-
+# plt.savefig(f"dd_auc_vs_leak_size_without_closest_sensors.png", dpi=200, bbox_inches='tight')
 plt.show()
-
-
 
 
 #%%
@@ -80,13 +91,11 @@ plt.show()
 # CREATE HEATMAP FOR DRIFT DETECTION AUC SCORES
 ###############################################
 # load results
-results = pd.read_csv("dd_experiment_results.csv")
-results_19mm = pd.read_csv("dd_experiment_results_19mm.csv")
-results = pd.concat([results, results_19mm], ignore_index=True)
+results = pd.read_csv("dd_ros_17_sensors_results.csv")
 
 # load pipes, nodes shape files
-pipes = gpd.read_file("..\\_shapefiles_\\L-TOWN_Real_pipes.shp")
-nodes = gpd.read_file("..\\_shapefiles_\\L-TOWN_Real_junctions.shp")
+pipes = gpd.read_file("..\\..\\_shapefiles_\\L-TOWN_Real_pipes.shp")
+nodes = gpd.read_file("..\\..\\_shapefiles_\\L-TOWN_Real_junctions.shp")
 
 # modify pump connection
 pipes.loc[pipes['id'] == 'p239', 'nodefrom'] = 'n54'
@@ -220,5 +229,6 @@ processed_pipes, processed_nodes = propagate_nodes_to_pipes(pipes, nodes)
 
 
 # save processed pipes to new shapefile
-processed_pipes.to_file("processed_pipes.shp")
+processed_pipes.to_file("processed_pipes_17_sensors.shp")
+
 # %%

@@ -16,15 +16,11 @@ env/
 *.dbf
 *.prj
 *.cpg
+*.qmd
 
 # QGIS projects
 *.qgz
 *.qgs
-
-# ignore shapefiles, datasets folders and inp files
-*/_shapefiles_/
-*/Datasets/
-*/results images/
 
 *.inp
 *.bin
@@ -33,3 +29,19 @@ env/
 # ignore csv and json
 *.csv
 *.json
+*.png
+*.xlsx
+
+# ignore shapefiles, datasets folders and inp files
+*/_shapefiles_/
+*/Datasets/
+*/results images/
+
+# ignore specific files
+create loc results shapefiles.py
+experiments.py
+find flow direction.py
+shortest_path_to_sensors. - directed graph.py
+shortest_path_to_sensors.py
+top two closest sensors.py
+visualize pressure sensors.py

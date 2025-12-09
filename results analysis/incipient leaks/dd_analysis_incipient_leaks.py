@@ -36,16 +36,18 @@ for idx, results_df in enumerate(results):
         mean_smooth = mean_auc.rolling(window, center=True).mean()
         std_smooth = std_auc.rolling(window, center=True).mean()
 
-        plt.plot(mean_smooth.index, mean_smooth.values, color=colors[id], label=f"{dd_method.upper()} mean AUC")
+        plt.plot(mean_smooth.index, mean_smooth.values, color=colors[id], label=f"{dd_method.upper()}")
         plt.fill_between(mean_smooth.index,
                         mean_smooth.values - std_smooth.values,
                         mean_smooth.values + std_smooth.values,
                         color=colors[id],
-                        alpha=0.2, label=f"{dd_method.upper()} std dev")
+                        alpha=0.2)
 
-    plt.xlabel("Leak development time (days)", fontsize=12)
-    plt.ylabel("AUC Score", fontsize=12)
-    plt.legend(loc="upper right", fontsize=12)
+    plt.xlabel("Development time (days)", fontsize=27)
+    plt.ylabel("AUC Score", fontsize=27)
+    plt.legend(loc="upper right", fontsize=27)
+    plt.xticks(fontsize=22)
+    plt.yticks(fontsize=22)
     plt.ylim(0.4, 1)
     plt.grid(True, linestyle='--', alpha=0.7)
 
